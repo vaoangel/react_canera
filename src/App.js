@@ -9,9 +9,9 @@ function App() {
   return (
     // El provider se encarga de cargar el store para toda la app
        <Provider store = {store}> 
-       <Header/>
        {/*Base router contiene todas las rutas de la app */}
         <Router>
+        <Header/>
         <BaseRouter/>
         </Router>
       </Provider>

@@ -2,7 +2,6 @@ import React from 'react'
 
 
 import {connect} from 'react-redux'
-// import {  Link } from 'react-router-dom';
 
 function mapStateToProps(state){
     return "test"
@@ -53,7 +52,6 @@ class FitxaAnimal extends React.Component{
             <div> 
                 <form id="form">
                         <label htmlFor="dataEixida">Data eixida:</label> <input type="date" name="dataEixida" onChange={this.handleChanges} placeholder={this.state.formData.dataEixida}/>
-
                         <label htmlFor="dataNaixement">Data naixement:</label> <input type="date" name="dataNaixement" onChange={this.handleChanges} placeholder={this.state.formData.dataNaixement}/>
                         <label htmlFor="dataEut">Data Eutanasia:</label> <input type="date" name="dataEut" onChange={this.handleChanges} placeholder={this.state.formData.dataEut}/>
                         <label htmlFor="dataIdent">Data Identificació:</label> <input type="date" name="dataIdent" onChange={this.handleChanges} placeholder={this.state.formData.dataIdent}/>

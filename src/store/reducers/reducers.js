@@ -1,17 +1,9 @@
-const initialState = {
-    animals:[],
-}
+import { combineReducers } from 'redux';
+import AnimalsReducer from './Animals.reducer'
 
 
+export default combineReducers({
+    AnimalsReducer,
 
-
-const animales = (state = initialState,action) =>{
-    switch(action.type){
-        case "GET_ANIMALS":
-
-            return state.animals
-    }
-}
-
-
-export default animales
+    
+});
