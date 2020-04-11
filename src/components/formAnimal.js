@@ -29,7 +29,7 @@ class FitxaAnimal extends React.Component{
                 sexo:"default",
                 estatRec:'default',
                 dataEut:'default',
-                imatge:"default",
+                // imatge:"default",
                 llocRecollida:"default",
                 municipi:"default",
                 provincia:"default",
@@ -40,17 +40,27 @@ class FitxaAnimal extends React.Component{
             },
         }
         this.handleChanges = this.handleChanges.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
     handleChanges(event){
         this.setState({formData:{...this.state.formData, [event.target.name]: event.target.value }})
         }
+    handleSubmit(){
+       var Datachanges =this.state.formData 
+    for (const key in Datachanges ) {
+      
+        if(Datachanges[key] === 'default'){
+            alert("Ninguno de los campos puede estar vacio, porfavor revisa los datos introducidos")
+        }       
+    }
+    }
     render(){
-        console.log(this.state.formData);
+        // console.log(this.state.formData);
         
         return(
             <div> 
-                <form id="form">
+                <form id="form" onSubmit={this.handleSubmit}>
                         <label htmlFor="dataEixida">Data eixida:</label> <input type="date" name="dataEixida" onChange={this.handleChanges} placeholder={this.state.formData.dataEixida}/>
                         <label htmlFor="dataNaixement">Data naixement:</label> <input type="date" name="dataNaixement" onChange={this.handleChanges} placeholder={this.state.formData.dataNaixement}/>
                         <label htmlFor="dataEut">Data Eutanasia:</label> <input type="date" name="dataEut" onChange={this.handleChanges} placeholder={this.state.formData.dataEut}/>
@@ -114,7 +124,7 @@ class FitxaAnimal extends React.Component{
                         <option value="value3">Value3</option>
                         <option value="value4">Value4</option>
                     </select>
-                    <button type="submit" value="enviar">Enviar</button>
+                    <button type="button" value="enviar" onClick={this.handleSubmit}>Enviar</button>
                 </form>
             </div>
         )

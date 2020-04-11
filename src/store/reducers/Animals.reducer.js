@@ -21,5 +21,7 @@ export default (state = initialState, action) =>{
     switch(action.type){
         case Action.InsertAnimal:
             return animales(state,action);
+        default:
+            return {...state}
     }
 }
