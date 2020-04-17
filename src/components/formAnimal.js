@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {AnimalsApi} from '../router/agent'
 
 import {connect} from 'react-redux'
 
@@ -8,9 +8,12 @@ function mapStateToProps(state){
 }
 
 
-const mapDispatchToProps = dispatch =>{
-    return "test"
-}
+const mapDispatchToProps = dispatch =>({
+    insert:(data) =>{
+        dispatch({type:"InsertAnimal", payload: AnimalsApi.InsertAnimal(data)})
+    }
+    
+})
 
 
 
@@ -48,15 +51,22 @@ class FitxaAnimal extends React.Component{
         }
     handleSubmit(){
        var Datachanges =this.state.formData 
+       var errors = false;
     for (const key in Datachanges ) {
       
         if(Datachanges[key] === 'default'){
             alert("Ninguno de los campos puede estar vacio, porfavor revisa los datos introducidos")
+            errors= true; 
         }       
+    }
+
+    if(errors === false){
+        this.props.insert(this.state.formData)
     }
     }
     render(){
-        // console.log(this.state.formData);
+        
+        console.log(this.state.formData);
         
         return(
             <div> 
@@ -87,11 +97,11 @@ class FitxaAnimal extends React.Component{
                     <br></br>
                     <label htmlFor="especie">Especie:</label><input type="text" name="especie" onChange={this.handleChanges} placeholder={this.state.formData.especie}/>
                     <br></br>
-                    <label htmlFor="raça">Raça:</label><input type="text" name="raça" onChange={this.handleChanges} placeholder={this.state.formData.especie}/>
+                    <label htmlFor="raça">Raça:</label><input type="text" name="raça" onChange={this.handleChanges} placeholder={this.state.formData.raça}/>
                     <br></br>
                     <label htmlFor="capa">Capa:</label><input type="text" name="capa" onChange={this.handleChanges} placeholder={this.state.formData.capa}/>
                     <br></br>
-                    <label htmlFor="color">Color:</label><input type="text" name="capa" onChange={this.handleChanges} placeholder={this.state.formData.color}/>
+                    <label htmlFor="color">Color:</label><input type="text" name="color" onChange={this.handleChanges} placeholder={this.state.formData.color}/>
                     <br></br>
                     <label htmlFor="aptitud">Aptitud:</label><select type="text" name="aptitud" onChange={this.handleChanges} placeholder={this.state.formData.aptitud}>
                         <option value="value1">Value1</option>
@@ -132,4 +142,4 @@ class FitxaAnimal extends React.Component{
 }
 
 
-export default connect(null,null)(FitxaAnimal) 
+export default connect(null,mapDispatchToProps)(FitxaAnimal) 

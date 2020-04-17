@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import {FitxaA} from '../components/index'
+import {FitxaA,Home} from '../components/index'
 
 const BaseRouter = () => {
 
@@ -8,7 +8,7 @@ const BaseRouter = () => {
     return( 
         <div>
             <Route exact path="/formAnimal" component={FitxaA}/>
-
+            <Route exact path="/" component={Home}/>
         </div>
     )
 }

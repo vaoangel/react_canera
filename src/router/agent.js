@@ -26,12 +26,24 @@ const request ={
 }
 
 
-const Animals ={
+const AnimalsApi ={
     InsertAnimal: (data) =>{
-        request.post('UrlQuanJuananVullga', {
-            "model": {"campo": data, "campo": "data"}
-        })
+        console.log(data)
+        return data
+        // request.post('UrlQuanJuananVullga', {
+        //     "model": {"campo": data, "campo": "data"}
+        // })
+    },
+
+    GetAll: () =>{
+        var animals = Array("pepe","antonio")
+        // request.get('UrlQuanJuananFajaFaena')
+        return animals
     }
 
     
+}
+
+export {
+    AnimalsApi
 }
