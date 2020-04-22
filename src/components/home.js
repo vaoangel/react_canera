@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {AnimalsApi} from '../router/agent'
-
+import {Link} from 'react-router-dom'
 const mapStateToProps = state =>({
     fetch_items: state.AnimalsReducer.animals
 })
@@ -40,7 +40,7 @@ class Home extends React.Component{
         // console.log(this.props);
         
         let html =[]
-        // console.log(this.state.animals);
+        console.log(this.state.animals);
         return this.state.animals
     }
 
@@ -50,6 +50,8 @@ class Home extends React.Component{
         return(
             <div>
                 <h1>{this.animals_list()}</h1>
+                <h1>asd</h1>
+                <Link to={`/formAnimal/${this.state.animals}`} >Insertar animal</Link>
             </div>
         )
     }

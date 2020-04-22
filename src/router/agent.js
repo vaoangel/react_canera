@@ -18,10 +18,13 @@ const request ={
     get:  url => API.get(url).then(function (data){
         return data
     }).catch(),
-    patch: (url,body) => API.patch(url,body).then((data)=>{
+    put: (url,body) => API.put(url,body).then((data)=>{
         console.log(data);
         
         return data
+    }).catch((e)=>{
+        console.log(e)
+        console.log(url);
     })
 }
 
@@ -34,9 +37,23 @@ const AnimalsApi ={
         //     "model": {"campo": data, "campo": "data"}
         // })
     },
+    UpdateAnimal: (data) =>{
+        // console.log(data)
+        return data
+        // request.put('UrlQuanJuananVullga', {
+        //     "model": {"campo": data, "campo": "data"}
+        // })
+    },
 
     GetAll: () =>{
         var animals = Array("pepe","antonio")
+        // request.get('UrlQuanJuananFajaFaena')
+        return animals
+    },
+    GetOne: (data) =>{
+        var animals = Array("pepe","asdasdsa")
+        console.log(data);
+        
         // request.get('UrlQuanJuananFajaFaena')
         return animals
     }
@@ -44,6 +61,17 @@ const AnimalsApi ={
     
 }
 
+const RiviaApi={
+    InsertRivia: (data) =>{
+        console.log(data)
+        return data
+        // request.post('UrlQuanJuananVullga', {
+        //     "model": {"campo": data, "campo": "data"}
+        // })
+    },
+}
+
 export {
-    AnimalsApi
+    AnimalsApi,
+    RiviaApi
 }

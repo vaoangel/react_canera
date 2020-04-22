@@ -19,4 +19,8 @@ function App() {
 }
 
 export default App;
- 
+
+// Formulari tercers,animals,Rivia
+// Buscador per xip
+// Home total gosos
+//
