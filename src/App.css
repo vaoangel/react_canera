@@ -15,13 +15,12 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  /* color: white; */
 }
 
 .App-link {
@@ -62,7 +61,7 @@ select {
 }
 
 button , #button{
-  background-color: #4CAF50; /* Green */
+  background-color: blueviolet; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;

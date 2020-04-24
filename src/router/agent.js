@@ -69,6 +69,21 @@ const RiviaApi={
         //     "model": {"campo": data, "campo": "data"}
         // })
     },
+    UpdateRivia: (data) =>{
+        // console.log(data)
+        return data
+        // request.put('UrlQuanJuananVullga', {
+        //     "model": {"campo": data, "campo": "data"}
+        // })
+    },
+
+    GetOne: (data) =>{
+        var rivia = Array("pepe","asdasdsa")
+        console.log(data);
+        
+        // request.get('UrlQuanJuananFajaFaena')
+        return rivia
+    }
 }
 
 export {

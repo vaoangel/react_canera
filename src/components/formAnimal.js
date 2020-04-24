@@ -53,16 +53,16 @@ class FitxaAnimal extends React.Component{
         }
         this.handleChanges = this.handleChanges.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleSubmitUpdate = this.handleSubmitUpdate.bind(this);
+        // this.handleSubmitUpdate = this.handleSubmitUpdate.bind(this);
 
         this.state.update = this.props.match.params.updated;
-        if(this.state.update != 'false'){
+        if(this.state.update !== 'false'){
             this.props.onLoad(this.state.update)
 
         }
     }
     getSnapshotBeforeUpdate(prevProps, prevState) {
-        if (prevProps.current != this.props.current) {
+        if (prevProps.current !== this.props.current) {
             // console.log(this.props.current);
             
           const snapshot = this.props.current;
@@ -93,35 +93,40 @@ class FitxaAnimal extends React.Component{
     handleSubmit(){
        var Datachanges =this.state.formData 
        var errors = false;
-    for (const key in Datachanges ) {
-      
-        if(Datachanges[key] === 'default'){
-            alert("Ninguno de los campos puede estar vacio, porfavor revisa los datos introducidos")
-            errors= true; 
-            break
-        }       
-    }
+        for (const key in Datachanges ) {
+        
+            if(Datachanges[key] === 'default'){
+                alert("Ninguno de los campos puede estar vacio, porfavor revisa los datos introducidos")
+                errors= true; 
+                break
+            }       
+        }
 
-    if(errors === false){
-        this.props.insert(this.state.formData)
+        if(errors === false){
+            if(this.state.update === 'false'){
+                this.props.insert(this.state.formData)
+            }else{
+                this.props.update(this.state.formData)
+
+            }
+        }
     }
-    }
-    handleSubmitUpdate(){
-        var Datachanges =this.state.formData 
-        var errors = false;
-     for (const key in Datachanges ) {
+    // handleSubmitUpdate(){
+    //     var Datachanges =this.state.formData 
+    //     var errors = false;
+    //  for (const key in Datachanges ) {
        
-         if(Datachanges[key] === 'default'){
-             alert("Ninguno de los campos puede estar vacio, porfavor revisa los datos introducidos")
-             errors= true; 
-             break
-         }       
-     }
+    //      if(Datachanges[key] === 'default'){
+    //          alert("Ninguno de los campos puede estar vacio, porfavor revisa los datos introducidos")
+    //          errors= true; 
+    //          break
+    //      }       
+    //  }
  
-     if(errors === false){
-         this.props.update(this.state.formData)
-     }
-     }
+    //  if(errors === false){
+    //      this.props.update(this.state.formData)
+    //  }
+    //  }
     render(){
         console.log(this.props.current);
 

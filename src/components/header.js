@@ -7,15 +7,15 @@ class Header extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className="App-header">
                 <div id="button">
                     <Link to='/' >Home</Link>
                 </div>
                 <div id="button">
-                <Link to={`/formAnimal/${'false'}`} >Insertar animal</Link>
+                    <Link to={`/formAnimal/${'false'}`} >Insertar animal</Link>
                 </div>
                 <div id="button">
-                    <Link to='/formRivia' >Insertar Registre Rivia</Link>
+                    <Link to={`/formRivia/${'false'}`} >Insertar Registre Rivia</Link>
                 </div>
             </div>
 

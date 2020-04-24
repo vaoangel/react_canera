@@ -9,7 +9,7 @@ const BaseRouter = () => {
         <div>
             <Route exact path="/formAnimal/:updated" component={FitxaA}/>
             <Route exact path="/" component={Home}/>
-            <Route exact path="/formRivia" component={FormRivia}/>
+            <Route exact path="/formRivia/:updated" component={FormRivia}/>
         </div>
     )
 }

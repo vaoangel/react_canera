@@ -7,6 +7,8 @@ const ActionTypes={
     },
     RIVIA_TYPE:{
         INSERT_RIVIA: "INSERT_RIVIA",
+        FETCH_RIVIA: "FETCH_RIVIA",
+        FETCH_ANIMALS_SUCCESS: "FETCH_RIVIA_SUCCESS"
     }
 }
 
