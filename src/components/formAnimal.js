@@ -133,6 +133,7 @@ class FitxaAnimal extends React.Component{
         if(this.state.update === 'false'){
             return(
                 <div> 
+                    <h1>CREATE</h1>
                     <form id="form" onSubmit={this.handleSubmit}>
                             <label htmlFor="dataEixida">Data eixida:</label> <input type="date" name="dataEixida" onChange={this.handleChanges} placeholder={this.state.formData.dataEixida}/>
                             <label htmlFor="dataNaixement">Data naixement:</label> <input type="date" name="dataNaixement" onChange={this.handleChanges} placeholder={this.state.formData.dataNaixement}/>

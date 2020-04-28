@@ -109,7 +109,6 @@ class RegistreRivia extends React.Component{
                 this.props.insert(this.state.formData)
             }else{
                 this.props.update(this.state.formData)
-
             }
         }
     }

@@ -46,12 +46,11 @@ const AnimalsApi ={
     },
 
     GetAll: () =>{
-        var animals = Array("pepe","antonio")
-        // request.get('UrlQuanJuananFajaFaena')
-        return animals
+        var animals = Array("test1,","test2")
+        request.get('animals/tblanimals/')
     },
     GetOne: (data) =>{
-        var animals = Array("pepe","asdasdsa")
+        var animals = Array("test1GetOne,","Test2GetOne")
         console.log(data);
         
         // request.get('UrlQuanJuananFajaFaena')
@@ -78,7 +77,7 @@ const RiviaApi={
     },
 
     GetOne: (data) =>{
-        var rivia = Array("pepe","asdasdsa")
+        var rivia = Array("test1GetOne,","Test2GetOne")
         console.log(data);
         
         // request.get('UrlQuanJuananFajaFaena')

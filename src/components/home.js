@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch =>({
 })
 class Home extends React.Component{
     
-    state = {animals :undefined,filterData:undefined,filterSucces:undefined ,showFilterDiv:false}
+    state = {animals :undefined,filterData:undefined,filterSucces:undefined ,showFilterDiv:'false'}
     constructor(props){
         super(props)
         this.props.onLoad()
@@ -48,15 +48,11 @@ class Home extends React.Component{
         // console.log("sadasdasdsadsa");
         
         for(var i=0; i<this.state.animals.length;i++){
-            
-                       if(this.state.filterData === this.state.animals[i]){
-                           
-                        this.setState({[event.target.name]: this.state.animals[i] })
-                    }
-                       }
-                       this.state.showFilterDiv = true;
-        
-
+            if(this.state.filterData === this.state.animals[i]){      
+                this.setState({[event.target.name]: this.state.animals[i] })
+            }
+        }
+            this.state.showFilterDiv = true;
         }
     
     animals_list(){
@@ -69,7 +65,7 @@ class Home extends React.Component{
 
     render(){   
     console.log(this.state.showFilterDiv);
-             if(this.state.showFilterDiv === false){
+             if(this.state.showFilterDiv === 'false'){
                 return(
                     <div>
                         <div className="filterList">
@@ -78,19 +74,7 @@ class Home extends React.Component{
                         </div>
                         <div className="animalList"> {this.animals_list()} </div>
                         <Link to={`/formAnimal/${this.state.animals}`} >Insertar animal</Link>
-                        <Link to={`/formRivia/${this.state.animals}`} >Insertar Rivia</Link>
-        
-                    </div>
-                )
-             }else if(this.state.showFilterDiv === 'false'){
-                return(
-                    <div>
-                        <div className="filterList">
-                        <input type="text" name="filterData" onChange={this.handleChanges}/> 
-                        <button type="button" value="Buscar" name="filterSucces" onClick={this.handleFilters}>Buscar</button>
-                        </div>
-                        <div className="animalList"> {this.animals_list()} </div>
-                        <Link to={`/formAnimal/${this.state.animals}`} >Insertar animal</Link>
+                        <br></br>
                         <Link to={`/formRivia/${this.state.animals}`} >Insertar Rivia</Link>
         
                     </div>
