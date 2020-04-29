@@ -3,11 +3,12 @@ import {connect} from 'react-redux'
 import {AnimalsApi} from '../router/agent'
 import {Link} from 'react-router-dom'
 const mapStateToProps = state =>({
-    fetch_items: state.AnimalsReducer.animals
+    fetch_items: state.AnimalsReducer.animals,
+    loading: state.AnimalsReducer.loading
 })
 
 const mapDispatchToProps = dispatch =>({
-    onLoad: () =>dispatch({type:"FETCH_ANIMALS", payload:AnimalsApi.GetAll()}),
+    onLoad: () =>dispatch({type:"FETCH_ANIMALS", payload:AnimalsApi.GetAll(), method:"GetAll"}),
     success: () => dispatch({type:"FETCH_ANIMALS_SUCCESS"})
 })
 class Home extends React.Component{
@@ -16,6 +17,7 @@ class Home extends React.Component{
     constructor(props){
         super(props)
         this.props.onLoad()
+
         this.animals_list = this.animals_list.bind(this)
         this.handleChanges = this.handleChanges.bind(this);
         this.handleFilters = this.handleFilters.bind(this);
@@ -24,7 +26,7 @@ class Home extends React.Component{
     }  
     getSnapshotBeforeUpdate(prevProps, prevState) {
         if (prevProps.fetch_items != this.props.fetch_items) {
-            // console.log(this.props.fetch_items);
+            console.log(this.props.fetch_items);
             
           const snapshot = this.props.fetch_items;
           return snapshot
@@ -59,12 +61,12 @@ class Home extends React.Component{
         // console.log(this.props);
         
         let html =[]
-        // console.log(this.state.animals);
-        return this.state.animals
+        console.log(this.state.animals);
+        return "sad"
     }
 
     render(){   
-    console.log(this.state.showFilterDiv);
+
              if(this.state.showFilterDiv === 'false'){
                 return(
                     <div>

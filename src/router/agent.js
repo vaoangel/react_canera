@@ -16,7 +16,15 @@ const request ={
         console.log(url);
     }),
     get:  url => API.get(url).then(function (data){
-        return data
+        return new Promise((resolve,reject)=>{
+            if(data.data!==undefined){
+                   resolve(data.data)
+                   
+            }else{
+                reject("error")
+            }
+       })
+
     }).catch(),
     put: (url,body) => API.put(url,body).then((data)=>{
         console.log(data);
@@ -44,11 +52,18 @@ const AnimalsApi ={
         //     "model": {"campo": data, "campo": "data"}
         // })
     },
-
-    GetAll: () =>{
-        var animals = Array("test1,","test2")
-        request.get('animals/tblanimals/')
+    GetAll:()=>{
+        const info =    request.get('animals/tblanimals/').then(function(data){
+            // console.log(data.results);
+            
+            return data
+        }).catch(function(error){
+            return error
+        })
+     
+        return info
     },
+
     GetOne: (data) =>{
         var animals = Array("test1GetOne,","Test2GetOne")
         console.log(data);
