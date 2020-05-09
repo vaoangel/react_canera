@@ -10,7 +10,17 @@ let API = axios.create({
 const request ={
     // del:  url => API.delete(url).then().catch(),
     post:(url, body) => API.post(url,body).then(function (data) {       
-        return data.data
+        return new Promise((resolve,reject)=>{
+            console.log(data);
+            
+            if(data!==undefined){
+                   resolve(data.data)
+                   
+            }else{
+                reject("error")
+            }
+       })
+    
     }).catch((e)=>{
         console.log(e)
         console.log(url);
@@ -40,10 +50,13 @@ const request ={
 const AnimalsApi ={
     InsertAnimal: (data) =>{
         console.log(data)
+
+        const info = request.post('tblanimals/', {"animals":data}).then(function(data){
+            console.log(data);
+            
         return data
-        // request.post('UrlQuanJuananVullga', {
-        //     "model": {"campo": data, "campo": "data"}
-        // })
+    })
+    return info
     },
     UpdateAnimal: (data) =>{
         // console.log(data)
@@ -53,8 +66,8 @@ const AnimalsApi ={
         // })
     },
     GetAll:()=>{
-        const info =    request.get('animals/tblanimals/').then(function(data){
-            // console.log(data.results);
+        const info = request.get('tblanimals/?limit=100&offset=100"').then(function(data){
+            // console.log(data);
             
             return data
         }).catch(function(error){
@@ -64,12 +77,35 @@ const AnimalsApi ={
         return info
     },
 
-    GetOne: (data) =>{
-        var animals = Array("test1GetOne,","Test2GetOne")
-        console.log(data);
+    // GetOne: (data) =>{
+    //     var animals = Array("test1GetOne,","Test2GetOne")
+    //     console.log(data);
         
-        // request.get('UrlQuanJuananFajaFaena')
-        return animals
+    //     // request.get('UrlQuanJuananFajaFaena')
+    //     return animals
+    // },
+
+    GetMunicipis:()=>{
+        const info = request.get('municipis/tblMunicipi/?limit=100&offset=100"').then(function(data){
+            // console.log(data);
+            
+            return data.results
+        }).catch(function(error){
+            return error
+        })
+     
+        return info
+    },
+    GetProvincies:()=>{
+        const info = request.get('municipis/tblProvi/?limit=100&offset=100"').then(function(data){
+            // console.log(data);
+            
+            return data.results
+        }).catch(function(error){
+            return error
+        })
+     
+        return info
     }
 
     

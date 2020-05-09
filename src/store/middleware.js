@@ -2,14 +2,14 @@ import APIS from "../router/index.js"
 const promiseMiddleware = store => next => action => {
 
     if(action.method !== undefined){   
-      console.log(APIS.AnimalsApi[action.method])
+      // console.log(APIS[action.api][action.method])
 
           store.dispatch({type:action.type+"_PENDING"})
-          APIS.AnimalsApi[action.method]().then(res=>{
-              console.log(res);
+          APIS[action.api][action.method](action.payload).then(res=>{
+              // console.log(res);
               
       
-          store.dispatch({type:action.type+"_SUCCESS",payload:res.results}) 
+          store.dispatch({type:action.type+"_SUCCESS",payload:res}) 
         },
         err=>{
           store.dispatch({type:action.type+"_FAILURE",error:err})
