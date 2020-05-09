@@ -92,16 +92,6 @@ class Home extends React.Component{
                 <p name="idtamany">Tamany: {this.state.filterSucces.idtamany}</p>
                 <p name="nom">Nom: {this.state.filterSucces.nom}</p>
                 <p name="sexe">Sexe: {this.state.filterSucces.sexe}</p>
-
-
-
-
-
-
-
-
-
-
             </div>
         ]
     }
@@ -115,7 +105,7 @@ class Home extends React.Component{
                 <div key={elements.id}>
                     <h1>Animal</h1>
                 <h2>ID: {elements.id}</h2>
-                    {/* <Link to={`/formAnimal/${elements.id}`} onClick={this.handleClicks(this.state.animals)} >Insertar animal</Link> */}
+                    <Link to={`/formAnimal/${elements.id}`} onClick={this.handleClicks(this.state.animals)} >Detalles/Modificar Animal</Link>
                 </div>]
             })
             
@@ -137,15 +127,12 @@ class Home extends React.Component{
                 if((this.state.showFilterDiv === 'false')&&(this.state.animals!== undefined)){
                     return(
                         <div>
-    
                             <div className="filterList">
                             <input type="text" name="filterData" onChange={this.handleChanges}/> 
                             <button type="button" value="Buscar" name="filterSucces" onClick={this.handleFilters}>Buscar</button>
                             </div>
                             <div className="animalList"> {this.animals_list()} </div>
-                            <Link to={`/formAnimal/${this.state.animals}`} >Insertar animal</Link>
                             <br></br>
-                            <Link to={`/formRivia/${this.state.animals}`} >Insertar Rivia</Link>
             
                         </div>
                     )
