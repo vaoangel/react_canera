@@ -57,6 +57,8 @@ class FitxaAnimal extends React.Component{
        
         this.handleChanges = this.handleChanges.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderMunicipis = this.renderMunicipis.bind(this);
+        this.renderProvincies = this.renderProvincies.bind(this);
         this.props.onLoadMuni()
         this.props.onLoadProv()
         
@@ -138,129 +140,87 @@ class FitxaAnimal extends React.Component{
         // }
 
         if(errors === false){
-            if(this.state.update === 'false'){
-
-                var idProv = undefined;
-                var idMuni = undefined;
-                var Cpmuni = undefined;
-                for(var i=0; i< this.state.municipis.length; i++){
-                    if(this.state.formData.idmunicipi == this.state.municipis[i].nom){
-                        console.log(this.state.municipis[i]);
-                        idMuni = this.state.municipis[i].idmunicipi
-                        Cpmuni = this.state.municipis[i].cp;
-                        
-                    }
-                }
-                for(var i=0; i< this.state.provincies.length; i++){
-                    if(this.state.formData.idprovincia == this.state.provincies[i].nom){
-                        console.log(this.state.provincies[i]);
-                        idProv = this.state.provincies[i].idprovincia
-                        
-                    }
-                }
-
-                if((idMuni === undefined)||(idProv === undefined)){
-                    alert("Municipio o Provincia Incorrecto")
-                }else{
-                    const animals = {
-                        "transponder": null,
-                        "tranpenmusdret": false,
-                        "tranpenmusesq": false,
-                        "tatuatgeesq": false,
-                        "tatuatgedret": false,
-                        "dataidentificacio": Datachanges.dataIdent,
-                        "datanaixement": Datachanges.datanaixement,
-                        "dataeixida": Datachanges.dataeixida,
-                        "idraça": Datachanges.idraça,
-                        "idclasseanimal": Datachanges.idclasseanimal,
-                        "especie": Datachanges.especie,
-                        "idtamany": Datachanges.idtamany,
-                        "sexe": Datachanges.sexe,
-                        "nom": Datachanges.nom,
-                        "capa": Datachanges.capa,
-                        "color": Datachanges.color,
-                        "aptitut": Datachanges.aptitut,
-                        "domicili": Datachanges.domicili,
-                        "cp": Cpmuni,
-                        "idmunicipi": idMuni,
-                        "idprovincia": idProv,
-                        "dataeutanasia":Datachanges.dataeutanasia,
-                        "estatderecollida": Datachanges.estatderecollida,
-                        "idpropietari": Datachanges.idpropietari,
-                        "datarecollida": Datachanges.datarecollida  
-                    };
-                    console.log(animals);
+            // var idProv = undefined;
+            // var idMuni = undefined;
+            var Cpmuni = undefined;
+            for(var i=0; i< this.state.municipis.length; i++){
+                if(this.state.formData.idmunicipi == this.state.municipis[i].idmunicipi){
+                    console.log(this.state.municipis[i]);
+                    Cpmuni = this.state.municipis[i].cp;
                     
+                }
+            }
+            var currentDate = new Date()
+
+            const animals ={
+                "IDanimals": this.state.update,
+                "animals": {
+                    "transponder": null,
+                    "tranpenmusdret": false,
+                    "tranpenmusesq": false,
+                    "tatuatgeesq": false,
+                    "tatuatgedret": false,
+                    "dataidentificacio": Datachanges.dataIdent+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                    "datanaixement":  Datachanges.datanaixement+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                    "dataeixida": Datachanges.dataeixida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                    "idraça": Datachanges.idraça,
+                    "idclasseanimal":  Datachanges.idclasseanimal,
+                    "especie": Datachanges.especie,
+                    "idtamany": Datachanges.idtamany,
+                    "sexe": Datachanges.sexe,
+                    "nom": Datachanges.nom,
+                    "capa":Datachanges.capa,
+                    "color": Datachanges.color,
+                    "aptitut": Datachanges.aptitut,
+                    "domicili": Datachanges.domicili,
+                    "cp": Cpmuni,
+                    "idmunicipi": Datachanges.idmunicipi,
+                    "idprovincia": Datachanges.idprovincia,
+                    "dataeutanasia":  Datachanges.dataeutanasia+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                    "estatderecollida": Datachanges.estatderecollida,
+                    "idpropietari": Datachanges.idpropietari,
+                    "datarecollida": Datachanges.datarecollida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                }
+            }  
+            if(this.state.update === 'false'){
+                    console.log(animals);
                     this.props.insert(animals)
-                }
-               
             }else{
-                var idProv = undefined;
-                var idMuni = undefined;
-                var Cpmuni = undefined;
-                for(var i=0; i< this.state.municipis.length; i++){
-                    if(this.state.formData.idmunicipi == this.state.municipis[i].nom){
-                        console.log(this.state.municipis[i]);
-                        idMuni = this.state.municipis[i].idmunicipi
-                        Cpmuni = this.state.municipis[i].cp;
-                        
-                    }
-                }
-                for(var i=0; i< this.state.provincies.length; i++){
-                    // console.log(this.state.provincies[i]);
-
-                    if(this.state.formData.idprovincia == this.state.provincies[i].nom){
-                        console.log(this.state.provincies[i]);
-                        idProv = this.state.provincies[i].idprovincia
-                        
-                    }
-                }
-               
-                var currentDate = new Date()
-              
-               
-                const animals ={
-                    "IDanimals": this.state.update,
-                    "animals": {
-                        "transponder": null,
-                        "tranpenmusdret": false,
-                        "tranpenmusesq": false,
-                        "tatuatgeesq": false,
-                        "tatuatgedret": false,
-                        "dataidentificacio": Datachanges.dataIdent+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
-                        "datanaixement":  Datachanges.datanaixement+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
-                        "dataeixida": Datachanges.dataeixida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
-                        "idraça": Datachanges.idraça,
-                        "idclasseanimal":  Datachanges.idclasseanimal,
-                        "especie": Datachanges.especie,
-                        "idtamany": Datachanges.idtamany,
-                        "sexe": Datachanges.sexe,
-                        "nom": Datachanges.nom,
-                        "capa":Datachanges.capa,
-                        "color": Datachanges.color,
-                        "aptitut": Datachanges.aptitut,
-                        "domicili": Datachanges.domicili,
-                        "cp": Cpmuni,
-                        "idmunicipi": idMuni,
-                        "idprovincia": idProv,
-                        "dataeutanasia":  Datachanges.dataeutanasia+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
-                        "estatderecollida": Datachanges.estatderecollida,
-                        "idpropietari": Datachanges.idpropietari,
-                        "datarecollida": Datachanges.datarecollida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
-                    }
-                }
-
                 console.log(animals);
-                
                 this.props.update(animals)
-
             }
         }
     }
-
+    renderMunicipis(){
+        let html = []
+        this.state.municipis.map((elements)=>{
+            // console.log(elements);
+            
+            return html = [...html,
+            <option value={elements.idmunicipi}>{elements.nom}</option>
+            ]
+        })
+        // console.log(html);
+        
+        return html
+    }
+    renderProvincies(){
+        let html = []
+        this.state.provincies.map((elements)=>{
+            // console.log(elements);
+            
+            return html = [...html,
+            <option value={elements.idprovincia}>{elements.nom}</option>
+            ]
+        })
+        // console.log(html);
+        
+        return html
+    }
     render(){
        
         
+        console.log(this.state.formData.idmunicipi);
         
         if(this.state.update === 'false'){
             return(
@@ -298,9 +258,12 @@ class FitxaAnimal extends React.Component{
                         <br></br>
                         <label htmlFor="idpropietari">Propietari:</label><input type="text" name="idpropietari" onChange={this.handleChanges} placeholder={this.state.formData.idpropietari}/>
                         <br></br>
-                        <label htmlFor="idmunicipi">Municipi:</label><input type="text" name="idmunicipi" onChange={this.handleChanges} placeholder={this.state.formData.idmunicipi}/>
-                        <br></br>
-                        <label htmlFor="idprovincia">Privincia:</label><input type="text" name="idprovincia" onChange={this.handleChanges} placeholder={this.state.formData.ididprovincia}/>
+                        <label htmlFor="idmunicipi">Municipi:</label><select type="text" name="idmunicipi" onChange={this.handleChanges} placeholder={this.state.formData.idmunicipi}>
+                            {this.renderMunicipis()}
+                        </select>
+                        <label htmlFor="idprovincia">Privincia:</label><select type="text" name="idprovincia" onChange={this.handleChanges} placeholder={this.state.formData.idprovincia}>
+                            {this.renderProvincies()}
+                        </select>
                            
                         <button type="button" value="enviar" onClick={this.handleSubmit}>Enviar</button>
                     </form>
@@ -347,7 +310,7 @@ class FitxaAnimal extends React.Component{
                 <div>
                 <form id="form" onSubmit={this.handleSubmit}>
                 <label htmlFor="dataeixida">Data eixida:</label> <input type="date" name="dataeixida" onChange={this.handleChanges} placeholder={this.state.currentData.dataeixida}/>
-                <label htmlFor="datanaixement">Data naixement:</label> <input type="date" name="datanaixement" value={this.state.currentData.datanaixement} onChange={this.handleChanges} placeholder={this.state.currentData.datanaixement}/>
+                <label htmlFor="datanaixement">Data naixement:</label> <input type="date" name="datanaixement"  onChange={this.handleChanges} placeholder={this.state.currentData.datanaixement}/>
                 <label htmlFor="dataeutanasia">Data Eutanasia:</label> <input type="date" name="dataeutanasia" onChange={this.handleChanges} placeholder={this.state.currentData.dataeutanasiaanasia}/>
                 <label htmlFor="dataIdent">Data Identificació:</label> <input type="date" name="dataIdent" onChange={this.handleChanges} placeholder={this.state.currentData.dataIdent}/>
                 <label htmlFor="datarecollida">Data Recollida:</label> <input type="date" name="datarecollida" onChange={this.handleChanges} placeholder={this.state.currentData.datarecollida}/>
@@ -355,11 +318,11 @@ class FitxaAnimal extends React.Component{
                 <label htmlFor="nom">Nom:</label><input type="text" name="nom"  onChange={this.handleChanges} placeholder={this.state.currentData.nom}/>
                 <br></br>
                 <label htmlFor="idclasseanimal">Classe d'animal:</label><input type="text" name="idclasseanimal" onChange={this.handleChanges} placeholder={this.state.currentData.idclasseanimal}/>
-                <label htmlFor="idtamany">Tamany:</label><input type="text" name="idtamany" onChange={this.handleChanges} placeholder={this.state.currentData.idtamany}/>
+                <label htmlFor="idtamany">Tamany:</label><input type="text" name="idtamany" maxLength="2" onChange={this.handleChanges} placeholder={this.state.currentData.idtamany}/>
                 <br></br>
                 <label htmlFor="especie">Especie:</label><input type="text" name="especie" onChange={this.handleChanges}placeholder={this.state.currentData.especie}/>
                 <br></br>
-                <label htmlFor="idraça">Raça:</label><input type="text" name="idraça" onChange={this.handleChanges} placeholder={this.state.currentData.idraça}/>
+                <label htmlFor="idraça">Raça:</label><input type="text" name="idraça" maxLength="3" onChange={this.handleChanges} placeholder={this.state.currentData.idraça}/>
                 <br></br>
                 <label htmlFor="capa">Capa:</label><input type="text" name="capa" onChange={this.handleChanges} placeholder={this.state.currentData.capa}/>
                 <br></br>
@@ -367,7 +330,7 @@ class FitxaAnimal extends React.Component{
                 <br></br>
                 <label htmlFor="aptitut">aptitut:</label><input type="text" name="aptitut" onChange={this.handleChanges} placeholder={this.state.currentData.aptitut}/>
                 <br></br>
-                <label htmlFor="sexe">Sexe:</label><input type="text" name="sexe" onChange={this.handleChanges} placeholder={this.state.currentData.sexe}/>
+                <label htmlFor="sexe">Sexe:</label><input type="text" name="sexe" maxLength="1" onChange={this.handleChanges} placeholder={this.state.currentData.sexe}/>
                 <br></br>
                 <label htmlFor="estatderecollida">Estat de recollida:</label><input type="text" name="estatderecollida" onChange={this.handleChanges} placeholder={this.state.currentData.estatderecollida}/>
                 <br></br>
@@ -377,9 +340,14 @@ class FitxaAnimal extends React.Component{
                 <br></br>
                 <label htmlFor="idpropietari">Propietari:</label><input type="text" name="idpropietari" onChange={this.handleChanges} placeholder={this.state.currentData.idpropietari}/>
                 <br></br>
-                <label htmlFor="idmunicipi">Municipi:</label><input type="text" name="idmunicipi" onChange={this.handleChanges} placeholder={this.state.currentData.idmunicipi}/>
-                <br></br>
-                <label htmlFor="idprovincia">Privincia:</label><input type="text" name="idprovincia" onChange={this.handleChanges} placeholder={this.state.currentData.idprovincia}/>
+                {/* <label htmlFor="idmunicipi">Municipi:</label><input type="text" name="idmunicipi" onChange={this.handleChanges} placeholder={this.state.currentData.idmunicipi}/>
+                <br></br> */}
+                <label htmlFor="idmunicipi">Municipi:</label><select type="text" name="idmunicipi" onChange={this.handleChanges} placeholder={this.state.currentData.idmunicipi}>
+                    {this.renderMunicipis()}
+                </select>
+                <label htmlFor="idprovincia">Privincia:</label><select type="text" name="idprovincia" onChange={this.handleChanges} placeholder={this.state.currentData.idprovincia}>
+                    {this.renderProvincies()}
+                </select>
                 <button type="button" value="enviar" onClick={this.handleSubmit}>Enviar</button>
             </form>
             <button type="button" name="showFormDiv" value="false" onClick={this.handleChanges}> Details</button>

@@ -76,7 +76,7 @@ const AnimalsApi ={
     return info
     },
     GetAll:()=>{
-        const info = request.get('tblanimals/?limit=50&offset=0&orderby=id"').then(function(data){
+        const info = request.get('tblanimals/?limit=100&offset=0&orderby=id"').then(function(data){
             // console.log(data);
             
             return data
