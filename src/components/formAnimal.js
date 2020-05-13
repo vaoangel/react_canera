@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch =>({
         dispatch({type:"INSERT_ANIMAL", payload: data,method:"InsertAnimal", api:"AnimalsApi"})
     },
     update:(data) =>{
-        dispatch({type:"UpdateAnimal", payload: AnimalsApi.UpdateAnimal(data)})
+        dispatch({type:"UPDATE_ANIMAL", payload:data,method: "UpdateAnimal", api:"AnimalsApi"})
     },
     onLoadMuni: () =>dispatch({type:"FETCH_MUNICIPIS",method:"GetMunicipis", api:"AnimalsApi"}),
     onLoadProv:() => dispatch({type: "FETCH_PROVINCIES", method:"GetProvincies", api: "AnimalsApi"}),
@@ -61,12 +61,12 @@ class FitxaAnimal extends React.Component{
         this.props.onLoadProv()
         
         this.state.update = this.props.match.params.updated;
-        console.log(this.props.current);
+        // console.log(this.props.current);
         
         if((this.state.update !== 'false')&&(this.props.current)){
-            console.log(this.props.current);
+            // console.log(this.props.current);
             for (let index = 0; index < this.props.current.animals.length; index++) {
-                console.log(this.state.update);
+                // console.log(this.state.update);
 
                 if(this.state.update == this.props.current.animals[index].id){
                     console.log(this.props.current.animals[index]);
@@ -128,14 +128,14 @@ class FitxaAnimal extends React.Component{
     handleSubmit(){
        var Datachanges =this.state.formData 
        var errors = false;
-        for (const key in Datachanges ) {
+        // for (const key in Datachanges ) {
         
-            if(Datachanges[key] === 'default'){
-                alert("Ninguno de los campos puede estar vacio, porfavor revisa los datos introducidos")
-                errors= true; 
-                break
-            }       
-        }
+        //     if(Datachanges[key] === 'default'){
+        //         alert("Ninguno de los campos puede estar vacio, porfavor revisa los datos introducidos")
+        //         errors= true; 
+        //         break
+        //     }       
+        // }
 
         if(errors === false){
             if(this.state.update === 'false'){
@@ -195,7 +195,64 @@ class FitxaAnimal extends React.Component{
                 }
                
             }else{
-                this.props.update(this.state.formData)
+                var idProv = undefined;
+                var idMuni = undefined;
+                var Cpmuni = undefined;
+                for(var i=0; i< this.state.municipis.length; i++){
+                    if(this.state.formData.idmunicipi == this.state.municipis[i].nom){
+                        console.log(this.state.municipis[i]);
+                        idMuni = this.state.municipis[i].idmunicipi
+                        Cpmuni = this.state.municipis[i].cp;
+                        
+                    }
+                }
+                for(var i=0; i< this.state.provincies.length; i++){
+                    // console.log(this.state.provincies[i]);
+
+                    if(this.state.formData.idprovincia == this.state.provincies[i].nom){
+                        console.log(this.state.provincies[i]);
+                        idProv = this.state.provincies[i].idprovincia
+                        
+                    }
+                }
+               
+                var currentDate = new Date()
+              
+               
+                const animals ={
+                    "IDanimals": this.state.update,
+                    "animals": {
+                        "transponder": null,
+                        "tranpenmusdret": false,
+                        "tranpenmusesq": false,
+                        "tatuatgeesq": false,
+                        "tatuatgedret": false,
+                        "dataidentificacio": Datachanges.dataIdent+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                        "datanaixement":  Datachanges.datanaixement+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                        "dataeixida": Datachanges.dataeixida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                        "idraça": Datachanges.idraça,
+                        "idclasseanimal":  Datachanges.idclasseanimal,
+                        "especie": Datachanges.especie,
+                        "idtamany": Datachanges.idtamany,
+                        "sexe": Datachanges.sexe,
+                        "nom": Datachanges.nom,
+                        "capa":Datachanges.capa,
+                        "color": Datachanges.color,
+                        "aptitut": Datachanges.aptitut,
+                        "domicili": Datachanges.domicili,
+                        "cp": Cpmuni,
+                        "idmunicipi": idMuni,
+                        "idprovincia": idProv,
+                        "dataeutanasia":  Datachanges.dataeutanasia+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                        "estatderecollida": Datachanges.estatderecollida,
+                        "idpropietari": Datachanges.idpropietari,
+                        "datarecollida": Datachanges.datarecollida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                    }
+                }
+
+                console.log(animals);
+                
+                this.props.update(animals)
 
             }
         }
@@ -273,7 +330,7 @@ class FitxaAnimal extends React.Component{
                     <p name="estatderecollida">Estat de recollida: {this.state.currentData.estatderecollida}</p>
                     <p name="idclasseanimal">Classe animal: {this.state.currentData.idclasseanimal}</p>
                     <p name="idmunicipi">Municipi: {this.state.currentData.idmunicipi}</p>
-                    <p name="idprovincia">Provincia: {this.state.currentData.idmunicipi}</p>
+                    <p name="idprovincia">Provincia: {this.state.currentData.idprovincia}</p>
                     <p name="idraça">Raça: {this.state.currentData.idraça}</p>
                     <p name="idtamany">Tamany: {this.state.currentData.idtamany}</p>
                     <p name="nom">Nom: {this.state.currentData.nom}</p>
@@ -285,23 +342,22 @@ class FitxaAnimal extends React.Component{
                 )
             
             }else{
-                console.log("sadas");
                 
             return(
                 <div>
                 <form id="form" onSubmit={this.handleSubmit}>
                 <label htmlFor="dataeixida">Data eixida:</label> <input type="date" name="dataeixida" onChange={this.handleChanges} placeholder={this.state.currentData.dataeixida}/>
                 <label htmlFor="datanaixement">Data naixement:</label> <input type="date" name="datanaixement" value={this.state.currentData.datanaixement} onChange={this.handleChanges} placeholder={this.state.currentData.datanaixement}/>
-                <label htmlFor="dataeutanasiaanasia">Data Eutanasia:</label> <input type="date" name="dataeutanasiaanasia" onChange={this.handleChanges} placeholder={this.state.currentData.dataeutanasiaanasia}/>
+                <label htmlFor="dataeutanasia">Data Eutanasia:</label> <input type="date" name="dataeutanasia" onChange={this.handleChanges} placeholder={this.state.currentData.dataeutanasiaanasia}/>
                 <label htmlFor="dataIdent">Data Identificació:</label> <input type="date" name="dataIdent" onChange={this.handleChanges} placeholder={this.state.currentData.dataIdent}/>
                 <label htmlFor="datarecollida">Data Recollida:</label> <input type="date" name="datarecollida" onChange={this.handleChanges} placeholder={this.state.currentData.datarecollida}/>
                 <br></br>
-                <label htmlFor="nom">Nom:</label><input type="text" name="nom" value={this.state.currentData.nom} onChange={this.handleChanges} placeholder={this.state.currentData.nom}/>
+                <label htmlFor="nom">Nom:</label><input type="text" name="nom"  onChange={this.handleChanges} placeholder={this.state.currentData.nom}/>
                 <br></br>
-                <label htmlFor="idclasseanimal">Classe d'animal:</label><input type="text" name="idclasseanimal" onChange={this.handleChanges}value={this.state.currentData.idclasseanimal} placeholder={this.state.currentData.idclasseanimal}/>
+                <label htmlFor="idclasseanimal">Classe d'animal:</label><input type="text" name="idclasseanimal" onChange={this.handleChanges} placeholder={this.state.currentData.idclasseanimal}/>
                 <label htmlFor="idtamany">Tamany:</label><input type="text" name="idtamany" onChange={this.handleChanges} placeholder={this.state.currentData.idtamany}/>
                 <br></br>
-                <label htmlFor="especie">Especie:</label><input type="text" name="especie" onChange={this.handleChanges}value={this.state.currentData.especie} placeholder={this.state.currentData.especie}/>
+                <label htmlFor="especie">Especie:</label><input type="text" name="especie" onChange={this.handleChanges}placeholder={this.state.currentData.especie}/>
                 <br></br>
                 <label htmlFor="idraça">Raça:</label><input type="text" name="idraça" onChange={this.handleChanges} placeholder={this.state.currentData.idraça}/>
                 <br></br>
@@ -315,7 +371,7 @@ class FitxaAnimal extends React.Component{
                 <br></br>
                 <label htmlFor="estatderecollida">Estat de recollida:</label><input type="text" name="estatderecollida" onChange={this.handleChanges} placeholder={this.state.currentData.estatderecollida}/>
                 <br></br>
-                <label htmlFor="llocRecollida">Lloc de recollida:</label><input type="text" name="llocRecollida" onChange={this.handleChanges} placeholder={this.state.currentData.llocRecollida}/>
+                {/* <label htmlFor="llocRecollida">Lloc de recollida:</label><input type="text" name="llocRecollida" onChange={this.handleChanges} placeholder={this.state.currentData.llocRecollida}/> */}
                 <br></br>
                 <label htmlFor="domicili">Domicili:</label><input type="text" name="domicili" onChange={this.handleChanges} placeholder={this.state.currentData.domicili}/>
                 <br></br>

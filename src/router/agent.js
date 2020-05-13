@@ -37,9 +37,16 @@ const request ={
 
     }).catch(),
     put: (url,body) => API.put(url,body).then((data)=>{
-        console.log(data);
-        
-        return data
+        return new Promise((resolve,reject)=>{
+            console.log(data);
+            
+            if(data!==undefined){
+                   resolve(data.data)
+                   
+            }else{
+                reject("error")
+            }
+       })
     }).catch((e)=>{
         console.log(e)
         console.log(url);
@@ -59,14 +66,17 @@ const AnimalsApi ={
     return info
     },
     UpdateAnimal: (data) =>{
-        // console.log(data)
+        console.log(data)
+
+        const info = request.put('tblanimals/update/?id='+data.IDanimals, {"IDanimals":data.IDanimals,"animals":data.animals}).then(function(data){
+            console.log(data);
+            
         return data
-        // request.put('UrlQuanJuananVullga', {
-        //     "model": {"campo": data, "campo": "data"}
-        // })
+    })
+    return info
     },
     GetAll:()=>{
-        const info = request.get('tblanimals/?limit=100&offset=100"').then(function(data){
+        const info = request.get('tblanimals/?limit=50&offset=0&orderby=id"').then(function(data){
             // console.log(data);
             
             return data
