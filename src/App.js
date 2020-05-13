@@ -5,6 +5,7 @@ import { HashRouter as Router } from 'react-router-dom';
 import store from './store/store'
 import Header from './components/header'
 import BaseRouter from './router/router';
+
 function App() {
   return (
     // El provider se encarga de cargar el store para toda la app

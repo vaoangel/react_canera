@@ -223,52 +223,59 @@ class FitxaAnimal extends React.Component{
         console.log(this.state.formData.idmunicipi);
         
         if(this.state.update === 'false'){
-            return(
-                <div> 
-                    <h1>CREATE</h1>
-                    <form id="form" onSubmit={this.handleSubmit}>
-                        <label htmlFor="dataeixida">Data eixida:</label> <input type="date" name="dataeixida" onChange={this.handleChanges} placeholder={this.state.formData.dataeixida}/>
-                        <label htmlFor="datanaixement">Data naixement:</label> <input type="date" name="datanaixement" onChange={this.handleChanges} placeholder={this.state.formData.datanaixement}/>
-                        <label htmlFor="dataeutanasia">Data Eutanasia:</label> <input type="date" name="dataeutanasia" onChange={this.handleChanges} placeholder={this.state.formData.dataeutanasia}/>
-                        <label htmlFor="dataIdent">Data Identificació:</label> <input type="date" name="dataIdent" onChange={this.handleChanges} placeholder={this.state.formData.dataIdent}/>
-                        <label htmlFor="datarecollida">Data Recollida:</label> <input type="date" name="datarecollida" onChange={this.handleChanges} placeholder={this.state.formData.datarecollida}/>
-                        <br></br>
-                        <label htmlFor="nom">Nom:</label><input type="text" name="nom" onChange={this.handleChanges} placeholder={this.state.formData.nom}/>
-                        <br></br>
-                        <label htmlFor="idclasseanimal">Classe d'animal</label><input type="text" name="idclasseanimal" onChange={this.handleChanges} placeholder={this.state.formData.idclasseanimal}/> 
-                        <label htmlFor="idtamany">Tamany:</label><input type="text" name="idtamany" onChange={this.handleChanges} placeholder={this.state.formData.idtamany}/>
-                        <br></br>
-                        <label htmlFor="especie">Especie:</label><input type="text" name="especie" onChange={this.handleChanges} placeholder={this.state.formData.especie}/>
-                        <br></br>
-                        <label htmlFor="idraça">Raça:</label><input type="text" name="idraça" onChange={this.handleChanges} placeholder={this.state.formData.raça}/>
-                        <br></br>
-                        <label htmlFor="capa">Capa:</label><input type="text" name="capa" onChange={this.handleChanges} placeholder={this.state.formData.capa}/>
-                        <br></br>
-                        <label htmlFor="color">Color:</label><input type="text" name="color" onChange={this.handleChanges} placeholder={this.state.formData.color}/>
-                        <br></br>
-                        <label htmlFor="aptitut">aptitut:</label><input type="text" name="aptitut" onChange={this.handleChanges} placeholder={this.state.formData.aptitut}/> 
-                        <br></br>
-                        <label htmlFor="sexe">Sexe:</label><input type="text" name="sexe" onChange={this.handleChanges} placeholder={this.state.formData.sexe}/>
-                        <br></br>
-                        <label htmlFor="estatderecollida">Estat de recollida:</label><input type="text" name="estatderecollida" onChange={this.handleChanges} placeholder={this.state.formData.estatderecollida}/>
-                        <br></br>
-                        <label htmlFor="llocRecollida">Lloc de recollida:</label><input type="text" name="llocRecollida" onChange={this.handleChanges} placeholder={this.state.formData.llocRecollida}/>
-                        <br></br>
-                        <label htmlFor="domicili">Domicili:</label><input type="text" name="domicili" onChange={this.handleChanges} placeholder={this.state.formData.domicili}/>
-                        <br></br>
-                        <label htmlFor="idpropietari">Propietari:</label><input type="text" name="idpropietari" onChange={this.handleChanges} placeholder={this.state.formData.idpropietari}/>
-                        <br></br>
-                        <label htmlFor="idmunicipi">Municipi:</label><select type="text" name="idmunicipi" onChange={this.handleChanges} placeholder={this.state.formData.idmunicipi}>
-                            {this.renderMunicipis()}
-                        </select>
-                        <label htmlFor="idprovincia">Privincia:</label><select type="text" name="idprovincia" onChange={this.handleChanges} placeholder={this.state.formData.idprovincia}>
-                            {this.renderProvincies()}
-                        </select>
-                           
-                        <button type="button" value="enviar" onClick={this.handleSubmit}>Enviar</button>
-                    </form>
-                </div>
-            )
+            if((this.state.municipis != undefined) && (this.state.provincies !== undefined)){
+                return(
+                    <div> 
+                        <h1>CREATE</h1>
+                        <form id="form" onSubmit={this.handleSubmit}>
+                            <label htmlFor="dataeixida">Data eixida:</label> <input type="date" name="dataeixida" onChange={this.handleChanges} placeholder={this.state.formData.dataeixida}/>
+                            <label htmlFor="datanaixement">Data naixement:</label> <input type="date" name="datanaixement" onChange={this.handleChanges} placeholder={this.state.formData.datanaixement}/>
+                            <label htmlFor="dataeutanasia">Data Eutanasia:</label> <input type="date" name="dataeutanasia" onChange={this.handleChanges} placeholder={this.state.formData.dataeutanasia}/>
+                            <label htmlFor="dataIdent">Data Identificació:</label> <input type="date" name="dataIdent" onChange={this.handleChanges} placeholder={this.state.formData.dataIdent}/>
+                            <label htmlFor="datarecollida">Data Recollida:</label> <input type="date" name="datarecollida" onChange={this.handleChanges} placeholder={this.state.formData.datarecollida}/>
+                            <br></br>
+                            <label htmlFor="nom">Nom:</label><input type="text" name="nom" onChange={this.handleChanges} placeholder={this.state.formData.nom}/>
+                            <br></br>
+                            <label htmlFor="idclasseanimal">Classe d'animal</label><input type="text" name="idclasseanimal" onChange={this.handleChanges} placeholder={this.state.formData.idclasseanimal}/> 
+                            <label htmlFor="idtamany">Tamany:</label><input type="text" name="idtamany" onChange={this.handleChanges} placeholder={this.state.formData.idtamany}/>
+                            <br></br>
+                            <label htmlFor="especie">Especie:</label><input type="text" name="especie" onChange={this.handleChanges} placeholder={this.state.formData.especie}/>
+                            <br></br>
+                            <label htmlFor="idraça">Raça:</label><input type="text" name="idraça" onChange={this.handleChanges} placeholder={this.state.formData.raça}/>
+                            <br></br>
+                            <label htmlFor="capa">Capa:</label><input type="text" name="capa" onChange={this.handleChanges} placeholder={this.state.formData.capa}/>
+                            <br></br>
+                            <label htmlFor="color">Color:</label><input type="text" name="color" onChange={this.handleChanges} placeholder={this.state.formData.color}/>
+                            <br></br>
+                            <label htmlFor="aptitut">aptitut:</label><input type="text" name="aptitut" onChange={this.handleChanges} placeholder={this.state.formData.aptitut}/> 
+                            <br></br>
+                            <label htmlFor="sexe">Sexe:</label><input type="text" name="sexe" onChange={this.handleChanges} placeholder={this.state.formData.sexe}/>
+                            <br></br>
+                            <label htmlFor="estatderecollida">Estat de recollida:</label><input type="text" name="estatderecollida" onChange={this.handleChanges} placeholder={this.state.formData.estatderecollida}/>
+                            <br></br>
+                            <label htmlFor="llocRecollida">Lloc de recollida:</label><input type="text" name="llocRecollida" onChange={this.handleChanges} placeholder={this.state.formData.llocRecollida}/>
+                            <br></br>
+                            <label htmlFor="domicili">Domicili:</label><input type="text" name="domicili" onChange={this.handleChanges} placeholder={this.state.formData.domicili}/>
+                            <br></br>
+                            <label htmlFor="idpropietari">Propietari:</label><input type="text" name="idpropietari" onChange={this.handleChanges} placeholder={this.state.formData.idpropietari}/>
+                            <br></br>
+                            <label htmlFor="idmunicipi">Municipi:</label><select type="text" name="idmunicipi" onChange={this.handleChanges} placeholder={this.state.formData.idmunicipi}>
+                                {this.renderMunicipis()}
+                            </select>
+                            <label htmlFor="idprovincia">Privincia:</label><select type="text" name="idprovincia" onChange={this.handleChanges} placeholder={this.state.formData.idprovincia}>
+                                {this.renderProvincies()}
+                            </select>
+                               
+                            <button type="button" value="enviar" onClick={this.handleSubmit}>Enviar</button>
+                        </form>
+                    </div>
+                )
+            } else {
+                return (
+                    <div><h1>Loading...</h1></div>
+                )
+            }
+
         }else{
             if(!this.state.currentData){
                 return<Redirect to='/'/>   
