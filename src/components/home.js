@@ -99,10 +99,7 @@ class Home extends React.Component{
         // console.log(this.state.animals);
         
         let html =[]
-        this.state.animals.animals.sort(function(a, b) { 
-            return a.id - b.id  ||  a.name.localeCompare(b.name)
-             
-          });            
+
             this.state.animals.animals.map((elements) =>{
                 return html = [...html,
                 <div key={elements.id}>
