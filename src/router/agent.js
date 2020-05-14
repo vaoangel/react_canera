@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 let token = null
 let API = axios.create({
     baseURL: `http://localhost:8000/`,
@@ -14,9 +15,12 @@ const request ={
             console.log(data);
             
             if(data!==undefined){
+                alert("Operación realizada correctamente")
                    resolve(data.data)
                    
             }else{
+                alert("La operación ha fallado")
+
                 reject("error")
             }
        })
@@ -41,9 +45,13 @@ const request ={
             console.log(data);
             
             if(data!==undefined){
+                alert("Operación realizada correctamente")
+
                    resolve(data.data)
                    
             }else{
+                alert("La operación ha fallado")
+
                 reject("error")
             }
        })
@@ -56,12 +64,12 @@ const request ={
 
 const AnimalsApi ={
     InsertAnimal: (data) =>{
-        console.log(data)
+        console.log(data.animals)
 
-        const info = request.post('tblanimals/', {"animals":data}).then(function(data){
-            console.log(data);
+        const info = request.post('tblanimals/', {"animals":data.animals}).then(function(data){
             
-        return data
+            
+            return data 
     })
     return info
     },
@@ -71,12 +79,12 @@ const AnimalsApi ={
         const info = request.put('tblanimals/update/?id='+data.IDanimals, {"IDanimals":data.IDanimals,"animals":data.animals}).then(function(data){
             console.log(data);
             
-        return data
+       return data
     })
     return info
     },
     GetAll:()=>{
-        const info = request.get('tblanimals/?limit=50&offset=0&orderby=id"').then(function(data){
+        const info = request.get('tblanimals/?limit=50&offset=0&orderbyid=DESC"').then(function(data){
             // console.log(data);
             
             return data

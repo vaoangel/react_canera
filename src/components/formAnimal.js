@@ -109,19 +109,22 @@ class FitxaAnimal extends React.Component{
         
         
         if(snapshot != null){
-            if(snapshot[1].idmunicipi){
-                this.setState({
-                    municipis: snapshot,
-                })
-            }else if(snapshot[1].idprovincia){
-                this.setState({
-                    provincies: snapshot,
-                })
-            }else{
-                this.setState({
-                    current: snapshot,
-                })  
+            if(snapshot[1]){
+                if(snapshot[1].idmunicipi){
+                    this.setState({
+                        municipis: snapshot,
+                    })
+                }else if(snapshot[1].idprovincia){
+                    this.setState({
+                        provincies: snapshot,
+                    })
+                }else{
+                    this.setState({
+                        current: snapshot,
+                    })  
+                }
             }
+   
             this.props.success();
         }else{
 
@@ -190,9 +193,11 @@ class FitxaAnimal extends React.Component{
             }  
             if(this.state.update === 'false'){
                     console.log(animals);
+                    this.state.success = "true"
                     this.props.insert(animals)
             }else{
                 console.log(animals);
+                this.state.success = "true"
                 this.props.update(animals)
             }
         }
@@ -223,9 +228,10 @@ class FitxaAnimal extends React.Component{
         
         return html
     }
-    render(){
-        console.log(this.state.formData);
-        
+    render(){        
+        if(this.state.success == "true"){
+            return<Redirect to='/'/>   
+        }
         if(this.state.update === 'false'){
             if((this.state.municipis != undefined) && (this.state.provincies !== undefined)){
                 return(
@@ -249,7 +255,7 @@ class FitxaAnimal extends React.Component{
                                         </Grid>
                                         <Grid item xs={12} sm={2}>
                                             <label>Data Identificació</label>
-                                            <input type="date" name="dataeutanasia" onChange={this.handleChanges}/>
+                                            <input type="date" name="dataIdent" onChange={this.handleChanges}/>
                                         </Grid>
                                         <Grid item xs={12} sm={2}>
                                             <label>Data Recollida</label>
@@ -261,11 +267,14 @@ class FitxaAnimal extends React.Component{
                                         <Grid item xs={12} sm={6}>
                                             <TextField  name="idclasseanimal" label="Classe d'animal" fullWidth onChange={this.handleChanges}/>
                                         </Grid>
-                                        <Grid item xs={12} sm={6}>
-                                            <TextField name="idtamany" label="Tamany" maxLength="2" fullWidth onChange={this.handleChanges}/>
+                                        <Grid  maxLength="2" item xs={12} sm={6}>
+                                            <TextField name="idtamany" label="Tamany" rowsMax="2" fullWidth onChange={this.handleChanges}/>
                                         </Grid>
                                         <Grid item xs={12} sm={6}>
                                             <TextField name="especie" label="Especie" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="aptitut" label="Aptitud" fullWidth onChange={this.handleChanges}/>
                                         </Grid>
                                         <Grid item xs={12} sm={6}>
                                             <TextField name="idraça" label="Raça" maxLength="3" fullWidth onChange={this.handleChanges}/>
@@ -294,7 +303,7 @@ class FitxaAnimal extends React.Component{
                                         <Grid item xs={12} sm={6}>
                                             <Form.Label>Municipi</Form.Label>
                                             <Form.Control as="select" name="idmunicipi" fullWidth onChange={this.handleChanges}>
-                                                {this.renderProvincies()}
+                                                {this.renderMunicipis()}
                                             </Form.Control>
                                         </Grid>
                                         <Grid item xs={12} sm={6}>

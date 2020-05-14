@@ -73,25 +73,25 @@ class Home extends React.Component{
         let html =[]
         return html =[...html,
             <div key={this.state.filterSucces.id}>
-                <p name="id">ID: {this.state.filterSucces.id}</p>
-                <p name="aptitut">Aptitud: {this.state.filterSucces.aptitut}</p>
-                <p name="capa">Capa: {this.state.filterSucces.capa}</p>
-                <p name="color">Color: {this.state.filterSucces.color}</p>
-                <p name="dataeixida">Data eixida: {this.state.filterSucces.dataeixida}</p>
-                <p name="dataeutanasia">Data Eutanasia: {this.state.filterSucces.dataeutanasia}</p>
-                <p name="dataidentificacio">Data identificació: {this.state.filterSucces.dataidentificacio}</p>
-                <p name="datanaixement">Data neixement: {this.state.filterSucces.datanaixement}</p>
-                <p name="datarecollida">Data recollida: {this.state.filterSucces.datarecollida}</p>
-                <p name="domicili">Domicili: {this.state.filterSucces.domicili}</p>
-                <p name="especie">Especie: {this.state.filterSucces.especie}</p>
-                <p name="estatderecollida">Estat de recollida: {this.state.filterSucces.estatderecollida}</p>
-                <p name="idclasseanimal">Classe animal: {this.state.filterSucces.idclasseanimal}</p>
-                <p name="idmunicipi">Municipi: {this.state.filterSucces.idmunicipi}</p>
-                <p name="idprovincia">Provincia: {this.state.filterSucces.idmunicipi}</p>
-                <p name="idraça">Raça: {this.state.filterSucces.idraça}</p>
-                <p name="idtamany">Tamany: {this.state.filterSucces.idtamany}</p>
-                <p name="nom">Nom: {this.state.filterSucces.nom}</p>
-                <p name="sexe">Sexe: {this.state.filterSucces.sexe}</p>
+                <p key={this.state.filterSucces.id} name="id">ID: {this.state.filterSucces.id}</p>
+                <p key={this.state.filterSucces.id} name="aptitut">Aptitud: {this.state.filterSucces.aptitut}</p>
+                <p key={this.state.filterSucces.id} name="capa">Capa: {this.state.filterSucces.capa}</p>
+                <p key={this.state.filterSucces.id}name="color">Color: {this.state.filterSucces.color}</p>
+                <p key={this.state.filterSucces.id}name="dataeixida">Data eixida: {this.state.filterSucces.dataeixida}</p>
+                <p key={this.state.filterSucces.id}name="dataeutanasia">Data Eutanasia: {this.state.filterSucces.dataeutanasia}</p>
+                <p key={this.state.filterSucces.id}name="dataidentificacio">Data identificació: {this.state.filterSucces.dataidentificacio}</p>
+                <p key={this.state.filterSucces.id}name="datanaixement">Data neixement: {this.state.filterSucces.datanaixement}</p>
+                <p key={this.state.filterSucces.id}name="datarecollida">Data recollida: {this.state.filterSucces.datarecollida}</p>
+                <p key={this.state.filterSucces.id}name="domicili">Domicili: {this.state.filterSucces.domicili}</p>
+                <p key={this.state.filterSucces.id}name="especie">Especie: {this.state.filterSucces.especie}</p>
+                <p key={this.state.filterSucces.id}name="estatderecollida">Estat de recollida: {this.state.filterSucces.estatderecollida}</p>
+                <p key={this.state.filterSucces.id}name="idclasseanimal">Classe animal: {this.state.filterSucces.idclasseanimal}</p>
+                <p key={this.state.filterSucces.id}name="idmunicipi">Municipi: {this.state.filterSucces.idmunicipi}</p>
+                <p key={this.state.filterSucces.id}name="idprovincia">Provincia: {this.state.filterSucces.idmunicipi}</p>
+                <p key={this.state.filterSucces.id}name="idraça">Raça: {this.state.filterSucces.idraça}</p>
+                <p key={this.state.filterSucces.id}name="idtamany">Tamany: {this.state.filterSucces.idtamany}</p>
+                <p key={this.state.filterSucces.id}name="nom">Nom: {this.state.filterSucces.nom}</p>
+                <p key={this.state.filterSucces.id}name="sexe">Sexe: {this.state.filterSucces.sexe}</p>
             </div>
         ]
     }
@@ -106,7 +106,7 @@ class Home extends React.Component{
             return html = [
                 ...html,
                 <div className="col-md-3" key={elements.id}>
-                    <Card style={{ width: '18rem' }}>
+                    <Card style={{ width: '18rem' }} key={elements.id}>
                         <Card.Img variant="top" src={perro} />
                         <Card.Body>
                             <Card.Title>Nom: {elements.nom}</Card.Title>
@@ -115,7 +115,7 @@ class Home extends React.Component{
                                <br></br>
                                ID: {elements.id}
                             </Card.Text>
-                            <Link class="btn btn-primary" to={`/formAnimal/${elements.id}`} onClick={this.handleClicks(this.state.animals)} >Detalls</Link>
+                            <Link className="btn btn-primary" to={`/formAnimal/${elements.id}`} onClick={this.handleClicks(this.state.animals)} >Detalls</Link>
                         </Card.Body>
                     </Card>
                 </div>
