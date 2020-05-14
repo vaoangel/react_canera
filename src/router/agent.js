@@ -1,7 +1,7 @@
 import axios from 'axios'
 let token = null
 let API = axios.create({
-    baseURL: `http://0.0.0.0:8000/`,
+    baseURL: `http://localhost:8000/`,
     headers: {
         'Authorization': token!==null ? `Token ${token}` : "",
     },
@@ -76,7 +76,7 @@ const AnimalsApi ={
     return info
     },
     GetAll:()=>{
-        const info = request.get('tblanimals/?limit=100&offset=0&orderby=id"').then(function(data){
+        const info = request.get('tblanimals/?limit=50&offset=0&orderby=id"').then(function(data){
             // console.log(data);
             
             return data

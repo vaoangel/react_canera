@@ -224,7 +224,6 @@ class FitxaAnimal extends React.Component{
         
         if(this.state.update === 'false'){
             if((this.state.municipis != undefined) && (this.state.provincies !== undefined)){
-                
                 return(
                     <div> 
                         <h1>CREATE</h1>
@@ -271,14 +270,12 @@ class FitxaAnimal extends React.Component{
                         </form>
                     </div>
                 )
-            }else{
-                return(
-                    <div>
-                        <h1>Loading.....</h1>
-                    </div>
+            } else {
+                return (
+                    <div><h1>Loading...</h1></div>
                 )
             }
-       
+
         }else{
             if(!this.state.currentData){
                 return<Redirect to='/'/>   
