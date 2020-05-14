@@ -2,6 +2,12 @@ import React from 'react'
 import {AnimalsApi} from '../router/agent'
 import {connect} from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const mapStateToProps= state =>({
     current: state.AnimalsReducer.currentAnimal,
@@ -218,56 +224,93 @@ class FitxaAnimal extends React.Component{
         return html
     }
     render(){
-       
-        
-        console.log(this.state.formData.idmunicipi);
+        console.log(this.state.formData);
         
         if(this.state.update === 'false'){
             if((this.state.municipis != undefined) && (this.state.provincies !== undefined)){
                 return(
-                    <div> 
-                        <h1>CREATE</h1>
-                        <form id="form" onSubmit={this.handleSubmit}>
-                            <label htmlFor="dataeixida">Data eixida:</label> <input type="date" name="dataeixida" onChange={this.handleChanges} placeholder={this.state.formData.dataeixida}/>
-                            <label htmlFor="datanaixement">Data naixement:</label> <input type="date" name="datanaixement" onChange={this.handleChanges} placeholder={this.state.formData.datanaixement}/>
-                            <label htmlFor="dataeutanasia">Data Eutanasia:</label> <input type="date" name="dataeutanasia" onChange={this.handleChanges} placeholder={this.state.formData.dataeutanasia}/>
-                            <label htmlFor="dataIdent">Data Identificació:</label> <input type="date" name="dataIdent" onChange={this.handleChanges} placeholder={this.state.formData.dataIdent}/>
-                            <label htmlFor="datarecollida">Data Recollida:</label> <input type="date" name="datarecollida" onChange={this.handleChanges} placeholder={this.state.formData.datarecollida}/>
-                            <br></br>
-                            <label htmlFor="nom">Nom:</label><input type="text" name="nom" onChange={this.handleChanges} placeholder={this.state.formData.nom}/>
-                            <br></br>
-                            <label htmlFor="idclasseanimal">Classe d'animal</label><input type="text" name="idclasseanimal" onChange={this.handleChanges} placeholder={this.state.formData.idclasseanimal}/> 
-                            <label htmlFor="idtamany">Tamany:</label><input type="text" name="idtamany" onChange={this.handleChanges} placeholder={this.state.formData.idtamany}/>
-                            <br></br>
-                            <label htmlFor="especie">Especie:</label><input type="text" name="especie" onChange={this.handleChanges} placeholder={this.state.formData.especie}/>
-                            <br></br>
-                            <label htmlFor="idraça">Raça:</label><input type="text" name="idraça" onChange={this.handleChanges} placeholder={this.state.formData.raça}/>
-                            <br></br>
-                            <label htmlFor="capa">Capa:</label><input type="text" name="capa" onChange={this.handleChanges} placeholder={this.state.formData.capa}/>
-                            <br></br>
-                            <label htmlFor="color">Color:</label><input type="text" name="color" onChange={this.handleChanges} placeholder={this.state.formData.color}/>
-                            <br></br>
-                            <label htmlFor="aptitut">aptitut:</label><input type="text" name="aptitut" onChange={this.handleChanges} placeholder={this.state.formData.aptitut}/> 
-                            <br></br>
-                            <label htmlFor="sexe">Sexe:</label><input type="text" name="sexe" onChange={this.handleChanges} placeholder={this.state.formData.sexe}/>
-                            <br></br>
-                            <label htmlFor="estatderecollida">Estat de recollida:</label><input type="text" name="estatderecollida" onChange={this.handleChanges} placeholder={this.state.formData.estatderecollida}/>
-                            <br></br>
-                            <label htmlFor="llocRecollida">Lloc de recollida:</label><input type="text" name="llocRecollida" onChange={this.handleChanges} placeholder={this.state.formData.llocRecollida}/>
-                            <br></br>
-                            <label htmlFor="domicili">Domicili:</label><input type="text" name="domicili" onChange={this.handleChanges} placeholder={this.state.formData.domicili}/>
-                            <br></br>
-                            <label htmlFor="idpropietari">Propietari:</label><input type="text" name="idpropietari" onChange={this.handleChanges} placeholder={this.state.formData.idpropietari}/>
-                            <br></br>
-                            <label htmlFor="idmunicipi">Municipi:</label><select type="text" name="idmunicipi" onChange={this.handleChanges} placeholder={this.state.formData.idmunicipi}>
-                                {this.renderMunicipis()}
-                            </select>
-                            <label htmlFor="idprovincia">Privincia:</label><select type="text" name="idprovincia" onChange={this.handleChanges} placeholder={this.state.formData.idprovincia}>
-                                {this.renderProvincies()}
-                            </select>
-                               
-                            <button type="button" value="enviar" onClick={this.handleSubmit}>Enviar</button>
-                        </form>
+                    <div id="formu"> 
+                        {/* <h1>CREATE</h1> */}
+                        <div id="form">
+                            <form id="form1" onSubmit={this.handleSubmit}>
+                                <React.Fragment>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={12} sm={2}>
+                                            <label>Data eixida</label>
+                                            <input type="date" name="dataeixida" onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={2}>
+                                            <label>Data naixement</label>
+                                            <input type="date" name="datanaixement" onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={2}>
+                                            <label>Data Eutanasia</label>
+                                            <input type="date" name="dataeutanasia" onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={2}>
+                                            <label>Data Identificació</label>
+                                            <input type="date" name="dataeutanasia" onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={2}>
+                                            <label>Data Recollida</label>
+                                            <input type="date" name="datarecollida" onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="nom" label="Nom" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField  name="idclasseanimal" label="Classe d'animal" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="idtamany" label="Tamany" maxLength="2" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="especie" label="Especie" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="idraça" label="Raça" maxLength="3" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="capa" label="Capa" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="color" label="Color" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="sexe" label="Sexe" maxLength="1" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="estatderecollida" label="Estat de recollida" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="llocRecollida" label="Lloc de recollida" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="domicili" label="Domicili" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="idpropietari" label="Propietari" fullWidth onChange={this.handleChanges}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <Form.Label>Municipi</Form.Label>
+                                            <Form.Control as="select" name="idmunicipi" fullWidth onChange={this.handleChanges}>
+                                                {this.renderProvincies()}
+                                            </Form.Control>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                        <Form.Label>Provincia</Form.Label>
+                                            <Form.Control as="select" name="idprovincia" fullWidth onChange={this.handleChanges}>
+                                                {this.renderProvincies()}
+                                            </Form.Control>
+                                        </Grid>
+                                        <Grid item xs={12} sm={5}>
+                                            <button class="btn btn-primary" value="enviar" onClick={this.handleSubmit}>Enviar</button>
+                                        </Grid>
+                                    
+                                    </Grid>
+                                </React.Fragment>
+                            </form>
+                        </div>
                     </div>
                 )
             } else {

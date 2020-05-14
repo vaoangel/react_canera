@@ -37,8 +37,18 @@
 }
 
 #form{
-  background-color: lightgray;
-  
+  display: inline-block;
+  text-align: center;
+  width: 90%;
+}
+
+#form1{
+  display: inline-block;
+  width: 90%;
+}
+
+#formu {
+  text-align: center;
 }
 
 #dates>input{
