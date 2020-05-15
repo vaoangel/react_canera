@@ -228,6 +228,7 @@ class FitxaAnimal extends React.Component{
         
         return html
     }
+    
     render(){  
         console.log(this.state.formData);
               
