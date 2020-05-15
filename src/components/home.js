@@ -3,9 +3,9 @@ import {connect} from 'react-redux'
 // import {AnimalsApi} from '../router/agent'
 import {Link} from 'react-router-dom'
 import { Button } from 'reactstrap'
-import { Card, FormControl, Form } from "react-bootstrap";
+import { Card, FormControl, Form, Table } from "react-bootstrap";
 import perro from '../fotos_gifs/fotos/perro.png';
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 
 
     const mapStateToProps = state =>({
@@ -39,7 +39,8 @@ class Home extends React.Component{
             return snapshot
         }    
         return null;
-    } 
+    }
+    
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(snapshot != null){
             this.setState({
@@ -64,38 +65,85 @@ class Home extends React.Component{
                 this.setState({[event.target.name]: this.state.animals.animals[i] })
             }
         }
-
         this.state.showFilterDiv = true;
     }
+
     handleClicks(e){
         this.props.fetch_current(e)
     }
+
+    //LIST
     renderFilter(){
-        
-        
         let html =[]
         return html =[...html,
-            <div key={this.state.filterSucces.id}>
-                <p key={this.state.filterSucces.id} name="id">ID: {this.state.filterSucces.id}</p>
-                <p key={this.state.filterSucces.id} name="aptitut">Aptitud: {this.state.filterSucces.aptitut}</p>
-                <p key={this.state.filterSucces.id} name="capa">Capa: {this.state.filterSucces.capa}</p>
-                <p key={this.state.filterSucces.id}name="color">Color: {this.state.filterSucces.color}</p>
-                <p key={this.state.filterSucces.id}name="dataeixida">Data eixida: {this.state.filterSucces.dataeixida}</p>
-                <p key={this.state.filterSucces.id}name="dataeutanasia">Data Eutanasia: {this.state.filterSucces.dataeutanasia}</p>
-                <p key={this.state.filterSucces.id}name="dataidentificacio">Data identificació: {this.state.filterSucces.dataidentificacio}</p>
-                <p key={this.state.filterSucces.id}name="datanaixement">Data neixement: {this.state.filterSucces.datanaixement}</p>
-                <p key={this.state.filterSucces.id}name="datarecollida">Data recollida: {this.state.filterSucces.datarecollida}</p>
-                <p key={this.state.filterSucces.id}name="domicili">Domicili: {this.state.filterSucces.domicili}</p>
-                <p key={this.state.filterSucces.id}name="especie">Especie: {this.state.filterSucces.especie}</p>
-                <p key={this.state.filterSucces.id}name="estatderecollida">Estat de recollida: {this.state.filterSucces.estatderecollida}</p>
-                <p key={this.state.filterSucces.id}name="idclasseanimal">Classe animal: {this.state.filterSucces.idclasseanimal}</p>
-                <p key={this.state.filterSucces.id}name="idmunicipi">Municipi: {this.state.filterSucces.idmunicipi}</p>
-                <p key={this.state.filterSucces.id}name="idprovincia">Provincia: {this.state.filterSucces.idmunicipi}</p>
-                <p key={this.state.filterSucces.id}name="idraça">Raça: {this.state.filterSucces.idraça}</p>
-                <p key={this.state.filterSucces.id}name="idtamany">Tamany: {this.state.filterSucces.idtamany}</p>
-                <p key={this.state.filterSucces.id}name="nom">Nom: {this.state.filterSucces.nom}</p>
-                <p key={this.state.filterSucces.id}name="sexe">Sexe: {this.state.filterSucces.sexe}</p>
-            </div>
+                <div key={this.state.filterSucces.id}>
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>adassd</th>
+                                <th>asdasd</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>ID</th>
+                                <td>{this.state.filterSucces.id}</td>
+                                <th>Aptitut</th>
+                                <td>{this.state.filterSucces.aptitut}</td>
+                            </tr>
+                            <tr>
+                                <th>Capa</th>
+                                <td>{this.state.filterSucces.capa}</td>
+                                <th>Color</th>
+                                <td>{this.state.filterSucces.color}</td>
+                            </tr>
+                            <tr>
+                                <th>Data eixida</th>
+                                <td>{this.state.filterSucces.dataeixida}</td>
+                                <th>Data eutanasia</th>
+                                <td>{this.state.filterSucces.dataeutanasia}</td>
+                            </tr>
+                            <tr>
+                                <th>Data identificació</th>
+                                <td>{this.state.filterSucces.dataidentificacio}</td>
+                                <th>Data neixement</th>
+                                <td>{this.state.filterSucces.datanaixement}</td>
+                            </tr>
+                            <tr>
+                                <th>Domicili</th>
+                                <td>{this.state.filterSucces.domicili}</td>
+                                <th>Especie</th>
+                                <td>{this.state.filterSucces.especie}</td>
+                            </tr>
+                            <tr>
+                                <th>Estat de recollida</th>
+                                <td>{this.state.filterSucces.estatderecollida}</td>
+                                <th>Classe animal</th>
+                                <td>{this.state.filterSucces.idclasseanimal}</td>
+                            </tr>
+                            <tr>
+                                <th>Municipi</th>
+                                <td>{this.state.filterSucces.idmunicipi}</td>
+                                <th>Provincia</th>
+                                <td>{this.state.filterSucces.idprovincia}</td>
+                            </tr>
+                            <tr>
+                                <th>Raça</th>
+                                <td>{this.state.filterSucces.idraça}</td>
+                                <th>Tamany</th>
+                                <td>{this.state.filterSucces.idtamany}</td>
+                            </tr>
+                            <tr>
+                                <th>Nom</th>
+                                <td>{this.state.filterSucces.nom}</td>
+                                <th>Sexe</th>
+                                <td>{this.state.filterSucces.sexe}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                </div>
         ]
     }
     animals_list(){
@@ -164,7 +212,7 @@ class Home extends React.Component{
                 return(
                 <div>
                     <div>{this.renderFilter()}</div>
-                    <button type="button" name="showFilterDiv" value="false" onClick={this.handleChanges}>Volver</button>
+                    <button class="btn btn-primary" name="showFilterDiv" value="false" onClick={this.handleChanges}>Volver</button>
                 </div>
                 )
             }

@@ -333,6 +333,7 @@ class FitxaAnimal extends React.Component{
             }
             
             if(this.state.formData.showFormDiv === 'false'){
+                //LIST
                 return(
                     <div>
                         <Table striped bordered hover>
