@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import { Button } from 'reactstrap'
 import { Card, FormControl, Form } from "react-bootstrap";
 import perro from '../fotos_gifs/fotos/perro.png';
+import { ToastContainer, toast } from 'react-toastify';
 
 
     const mapStateToProps = state =>({
@@ -27,6 +28,8 @@ class Home extends React.Component{
         this.handleChanges = this.handleChanges.bind(this);
         this.handleFilters = this.handleFilters.bind(this);
         this.renderFilter = this.renderFilter.bind(this);
+        
+    
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
@@ -122,10 +125,12 @@ class Home extends React.Component{
 
             ]
         })
+     
         return html
     }
 
-    render(){   
+    render(){  
+         
         if(this.props.loading === true){
             return(
                 <div>
@@ -135,7 +140,9 @@ class Home extends React.Component{
         }else{
             if((this.state.showFilterDiv === 'false')&&(this.state.animals!== undefined)){
                 return(
+                    
                     <div>
+
                         <div className="filterList">
                             {/* <input type="text" name="filterData" onChange={this.handleChanges}/>  */}
                             {/* <button type="button" value="Buscar" name="filterSucces" onClick={this.handleFilters}>Buscar</button> */}

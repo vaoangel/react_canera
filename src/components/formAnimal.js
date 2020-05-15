@@ -192,7 +192,7 @@ class FitxaAnimal extends React.Component{
                 }
             }  
             if(this.state.update === 'false'){
-                    console.log(animals);
+                    alert("entra")
                     this.state.success = "true"
                     this.props.insert(animals)
             }else{
@@ -228,7 +228,9 @@ class FitxaAnimal extends React.Component{
         
         return html
     }
-    render(){        
+    render(){  
+        console.log(this.state.formData);
+              
         if(this.state.success == "true"){
             return<Redirect to='/'/>   
         }
