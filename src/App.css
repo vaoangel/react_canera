@@ -51,6 +51,10 @@
   text-align: center;
 }
 
+.filterList{
+  width: 20%;
+}
+
 #dates>input{
   align-items: center;
 }

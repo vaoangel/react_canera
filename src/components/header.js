@@ -9,7 +9,7 @@ class Header extends React.Component{
     render(){
         return(
             <div>
-                <Navbar bg="dark" variant="dark">
+                <Navbar bg="light">
                     <Nav className="mr-auto">
                         <Nav.Link>
                             <Link to={`/`}>Home</Link>
@@ -26,6 +26,5 @@ class Header extends React.Component{
         )
     }
 }
-
 
 export default Header

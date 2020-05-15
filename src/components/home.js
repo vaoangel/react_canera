@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 // import {AnimalsApi} from '../router/agent'
 import {Link} from 'react-router-dom'
 import { Button } from 'reactstrap'
-import { Card } from "react-bootstrap";
+import { Card, FormControl, Form } from "react-bootstrap";
 import perro from '../fotos_gifs/fotos/perro.png';
 
 
@@ -137,8 +137,12 @@ class Home extends React.Component{
                 return(
                     <div>
                         <div className="filterList">
-                            <input type="text" name="filterData" onChange={this.handleChanges}/> 
-                            <button type="button" value="Buscar" name="filterSucces" onClick={this.handleFilters}>Buscar</button>
+                            {/* <input type="text" name="filterData" onChange={this.handleChanges}/>  */}
+                            {/* <button type="button" value="Buscar" name="filterSucces" onClick={this.handleFilters}>Buscar</button> */}
+                            <Form inline>
+                                <FormControl type="text" name="filterData" placeholder="Buscar" onChange={this.handleChanges} className="mr-sm-2"/>
+                                <Button variant="outline-success" name="filterSucces" onClick={this.handleFilters}>Buscar</Button>
+                            </Form>
                         </div>
                         <div className="container">
                             <div className="row">

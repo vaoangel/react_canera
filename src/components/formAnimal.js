@@ -2,7 +2,7 @@ import React from 'react'
 import {AnimalsApi} from '../router/agent'
 import {connect} from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Table } from 'react-bootstrap'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -235,8 +235,8 @@ class FitxaAnimal extends React.Component{
         if(this.state.update === 'false'){
             if((this.state.municipis != undefined) && (this.state.provincies !== undefined)){
                 return(
+                    //CREATE
                     <div id="formu"> 
-                        {/* <h1>CREATE</h1> */}
                         <div id="form">
                             <form id="form1" onSubmit={this.handleSubmit}>
                                 <React.Fragment>
@@ -292,9 +292,6 @@ class FitxaAnimal extends React.Component{
                                             <TextField name="estatderecollida" label="Estat de recollida" fullWidth onChange={this.handleChanges}/>
                                         </Grid>
                                         <Grid item xs={12} sm={6}>
-                                            <TextField name="llocRecollida" label="Lloc de recollida" fullWidth onChange={this.handleChanges}/>
-                                        </Grid>
-                                        <Grid item xs={12} sm={6}>
                                             <TextField name="domicili" label="Domicili" fullWidth onChange={this.handleChanges}/>
                                         </Grid>
                                         <Grid item xs={12} sm={6}>
@@ -336,88 +333,164 @@ class FitxaAnimal extends React.Component{
             if(this.state.formData.showFormDiv === 'false'){
                 return(
                     <div>
-                    <h1>Details</h1>
-                    <div key={this.state.currentData.id}>
-                    <p name="id">ID: {this.state.currentData.id}</p>
-                    <p name="aptitut">Aptitud: {this.state.currentData.aptitut}</p>
-                    <p name="capa">Capa: {this.state.currentData.capa}</p>
-                    <p name="color">Color: {this.state.currentData.color}</p>
-                    <p name="dataeixida">Data eixida: {this.state.currentData.dataeixida}</p>
-                    <p name="dataeutanasia">Data Eutanasia: {this.state.currentData.dataeutanasia}</p>
-                    <p name="dataidentificacio">Data identificació: {this.state.currentData.dataidentificacio}</p>
-                    <p name="datanaixement">Data neixement: {this.state.currentData.datanaixement}</p>
-                    <p name="datarecollida">Data recollida: {this.state.currentData.datarecollida}</p>
-                    <p name="domicili">Domicili: {this.state.currentData.domicili}</p>
-                    <p name="especie">Especie: {this.state.currentData.especie}</p>
-                    <p name="estatderecollida">Estat de recollida: {this.state.currentData.estatderecollida}</p>
-                    <p name="idclasseanimal">Classe animal: {this.state.currentData.idclasseanimal}</p>
-                    <p name="idmunicipi">Municipi: {this.state.currentData.idmunicipi}</p>
-                    <p name="idprovincia">Provincia: {this.state.currentData.idprovincia}</p>
-                    <p name="idraça">Raça: {this.state.currentData.idraça}</p>
-                    <p name="idtamany">Tamany: {this.state.currentData.idtamany}</p>
-                    <p name="nom">Nom: {this.state.currentData.nom}</p>
-                    <p name="sexe">Sexe: {this.state.currentData.sexe}</p>
-                    <button type="button" name="showFormDiv" value="true" onClick={this.handleChanges}> Show Update form</button>
-
-                </div>
-                </div>
+                        <Table striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>adassd</th>
+                                    <th>asdasd</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <td>{this.state.currentData.id}</td>
+                                    <th>Aptitut</th>
+                                    <td>{this.state.currentData.aptitut}</td>
+                                </tr>
+                                <tr>
+                                    <th>Capa</th>
+                                    <td>{this.state.currentData.capa}</td>
+                                    <th>Color</th>
+                                    <td>{this.state.currentData.color}</td>
+                                </tr>
+                                <tr>
+                                    <th>Data eixida</th>
+                                    <td>{this.state.currentData.dataeixida}</td>
+                                    <th>Data eutanasia</th>
+                                    <td>{this.state.currentData.dataeutanasia}</td>
+                                </tr>
+                                <tr>
+                                    <th>Data identificació</th>
+                                    <td>{this.state.currentData.dataidentificacio}</td>
+                                    <th>Data neixement</th>
+                                    <td>{this.state.currentData.datanaixement}</td>
+                                </tr>
+                                <tr>
+                                    <th>Domicili</th>
+                                    <td>{this.state.currentData.domicili}</td>
+                                    <th>Especie</th>
+                                    <td>{this.state.currentData.especie}</td>
+                                </tr>
+                                <tr>
+                                    <th>Estat de recollida</th>
+                                    <td>{this.state.currentData.estatderecollida}</td>
+                                    <th>Classe animal</th>
+                                    <td>{this.state.currentData.idclasseanimal}</td>
+                                </tr>
+                                <tr>
+                                    <th>Municipi</th>
+                                    <td>{this.state.currentData.idmunicipi}</td>
+                                    <th>Provincia</th>
+                                    <td>{this.state.currentData.idprovincia}</td>
+                                </tr>
+                                <tr>
+                                    <th>Raça</th>
+                                    <td>{this.state.currentData.idraça}</td>
+                                    <th>Tamany</th>
+                                    <td>{this.state.currentData.idtamany}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nom</th>
+                                    <td>{this.state.currentData.nom}</td>
+                                    <th>Sexe</th>
+                                    <td>{this.state.currentData.sexe}</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                        <button class="btn btn-primary" name="showFormDiv" value="true" onClick={this.handleChanges}>Modificar</button>
+                    </div>
                 )
             
             }else{
-                
-            return(
-                <div>
-                <form id="form" onSubmit={this.handleSubmit}>
-                <label htmlFor="dataeixida">Data eixida:</label> <input type="date" name="dataeixida" onChange={this.handleChanges} placeholder={this.state.currentData.dataeixida}/>
-                <label htmlFor="datanaixement">Data naixement:</label> <input type="date" name="datanaixement"  onChange={this.handleChanges} placeholder={this.state.currentData.datanaixement}/>
-                <label htmlFor="dataeutanasia">Data Eutanasia:</label> <input type="date" name="dataeutanasia" onChange={this.handleChanges} placeholder={this.state.currentData.dataeutanasiaanasia}/>
-                <label htmlFor="dataIdent">Data Identificació:</label> <input type="date" name="dataIdent" onChange={this.handleChanges} placeholder={this.state.currentData.dataIdent}/>
-                <label htmlFor="datarecollida">Data Recollida:</label> <input type="date" name="datarecollida" onChange={this.handleChanges} placeholder={this.state.currentData.datarecollida}/>
-                <br></br>
-                <label htmlFor="nom">Nom:</label><input type="text" name="nom"  onChange={this.handleChanges} placeholder={this.state.currentData.nom}/>
-                <br></br>
-                <label htmlFor="idclasseanimal">Classe d'animal:</label><input type="text" name="idclasseanimal" onChange={this.handleChanges} placeholder={this.state.currentData.idclasseanimal}/>
-                <label htmlFor="idtamany">Tamany:</label><input type="text" name="idtamany" maxLength="2" onChange={this.handleChanges} placeholder={this.state.currentData.idtamany}/>
-                <br></br>
-                <label htmlFor="especie">Especie:</label><input type="text" name="especie" onChange={this.handleChanges}placeholder={this.state.currentData.especie}/>
-                <br></br>
-                <label htmlFor="idraça">Raça:</label><input type="text" name="idraça" maxLength="3" onChange={this.handleChanges} placeholder={this.state.currentData.idraça}/>
-                <br></br>
-                <label htmlFor="capa">Capa:</label><input type="text" name="capa" onChange={this.handleChanges} placeholder={this.state.currentData.capa}/>
-                <br></br>
-                <label htmlFor="color">Color:</label><input type="text" name="color" onChange={this.handleChanges} placeholder={this.state.currentData.color}/>
-                <br></br>
-                <label htmlFor="aptitut">aptitut:</label><input type="text" name="aptitut" onChange={this.handleChanges} placeholder={this.state.currentData.aptitut}/>
-                <br></br>
-                <label htmlFor="sexe">Sexe:</label><input type="text" name="sexe" maxLength="1" onChange={this.handleChanges} placeholder={this.state.currentData.sexe}/>
-                <br></br>
-                <label htmlFor="estatderecollida">Estat de recollida:</label><input type="text" name="estatderecollida" onChange={this.handleChanges} placeholder={this.state.currentData.estatderecollida}/>
-                <br></br>
-                {/* <label htmlFor="llocRecollida">Lloc de recollida:</label><input type="text" name="llocRecollida" onChange={this.handleChanges} placeholder={this.state.currentData.llocRecollida}/> */}
-                <br></br>
-                <label htmlFor="domicili">Domicili:</label><input type="text" name="domicili" onChange={this.handleChanges} placeholder={this.state.currentData.domicili}/>
-                <br></br>
-                <label htmlFor="idpropietari">Propietari:</label><input type="text" name="idpropietari" onChange={this.handleChanges} placeholder={this.state.currentData.idpropietari}/>
-                <br></br>
-                {/* <label htmlFor="idmunicipi">Municipi:</label><input type="text" name="idmunicipi" onChange={this.handleChanges} placeholder={this.state.currentData.idmunicipi}/>
-                <br></br> */}
-                <label htmlFor="idmunicipi">Municipi:</label><select type="text" name="idmunicipi" onChange={this.handleChanges} placeholder={this.state.currentData.idmunicipi}>
-                    {this.renderMunicipis()}
-                </select>
-                <label htmlFor="idprovincia">Privincia:</label><select type="text" name="idprovincia" onChange={this.handleChanges} placeholder={this.state.currentData.idprovincia}>
-                    {this.renderProvincies()}
-                </select>
-                <button type="button" value="enviar" onClick={this.handleSubmit}>Enviar</button>
-            </form>
-            <button type="button" name="showFormDiv" value="false" onClick={this.handleChanges}> Details</button>
-
-            </div>
+                return(
+                    //  UPDATE         
+                    <div id="formu"> 
+                        <div id="form">
+                            <form id="form1" onSubmit={this.handleSubmit}>
+                                <React.Fragment>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={12} sm={2}>
+                                            <label>Data eixida</label>
+                                            <input type="date" name="dataeixida" onChange={this.handleChanges} placeholder={this.state.currentData.dataeixida}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={2}>
+                                            <label>Data naixement</label>
+                                            <input type="date" name="datanaixement" onChange={this.handleChanges} placeholder={this.state.currentData.datanaixement}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={2}>
+                                            <label>Data Eutanasia</label>
+                                            <input type="date" name="dataeutanasia" onChange={this.handleChanges} placeholder={this.state.currentData.dataeutanasia}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={2}>
+                                            <label>Data Identificació</label>
+                                            <input type="date" name="dataIdent" onChange={this.handleChanges}  placeholder={this.state.currentData.dataIdent}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={2}>
+                                            <label>Data Recollida</label>
+                                            <input type="date" name="datarecollida" onChange={this.handleChanges} placeholder={this.state.currentData.datarecollida}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="nom" label="Nom" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.nom}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField  name="idclasseanimal" label="Classe d'animal" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.idclasseanimal}/>
+                                        </Grid>
+                                        <Grid  maxLength="2" item xs={12} sm={6}>
+                                            <TextField name="idtamany" label="Tamany" rowsMax="2" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.idtamany}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="especie" label="Especie" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.especie}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="aptitut" label="Aptitud" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.aptitut}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="idraça" label="Raça" maxLength="3" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.idraça}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="capa" label="Capa" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.capa}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="color" label="Color" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.color}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="sexe" label="Sexe" maxLength="1" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.sexe}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="estatderecollida" label="Estat de recollida" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.estatderecollida}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="domicili" label="Domicili" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.domicili}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField name="idpropietari" label="Propietari" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.idpropietari}/>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <Form.Label>Municipi</Form.Label>
+                                            <Form.Control as="select" name="idmunicipi" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.idmunicipi}>
+                                                {this.renderMunicipis()}
+                                            </Form.Control>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                        <Form.Label>Provincia</Form.Label>
+                                            <Form.Control as="select" name="idprovincia" fullWidth onChange={this.handleChanges} placeholder={this.state.currentData.idprovincia}>
+                                                {this.renderProvincies()}
+                                            </Form.Control>
+                                        </Grid>
+                                        <Grid item xs={12} sm={5}>
+                                            <button class="btn btn-primary" value="enviar" onClick={this.handleSubmit}>Enviar</button>
+                                        </Grid>
+                                    </Grid>
+                                </React.Fragment>
+                            </form>
+                        </div>
+                    </div>
                 )
             }      
         }
-        
     }
 }
-
 
 export default connect(mapStateToProps,mapDispatchToProps)(FitxaAnimal) 
