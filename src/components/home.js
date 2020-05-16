@@ -56,16 +56,24 @@ class Home extends React.Component{
     }
 
     handleFilters(event){
-        console.log(this.state.animals.animals);
-        
+        // console.log(this.state.animals.animals);
+        var error = false
         for(var i=0; i<this.state.animals.animals.length;i++){
             if(this.state.filterData == this.state.animals.animals[i].id){ 
                 // console.log(this.state.filterData); 
                 this.setState({[event.target.name]: this.state.animals.animals[i] })
+                error=false
+                break
+            }else{
+                error = true;
             }
         }
+        if(error === true){
+            alert("ID no encontrado")
+        }else{
+            this.state.showFilterDiv = true;
 
-        this.state.showFilterDiv = true;
+        }
     }
     handleClicks(e){
         this.props.fetch_current(e)
