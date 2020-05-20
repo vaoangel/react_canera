@@ -16,7 +16,7 @@ const request ={
             
             if(data!==undefined){
                 alert("Operación realizada correctamente")
-                   resolve(data.data)
+                   resolve(data)
                    
             }else{
                 alert("La operación ha fallado")
@@ -26,12 +26,13 @@ const request ={
        })
     
     }).catch((e)=>{
-        console.log(e)
-        console.log(url);
+        alert("La operación ha fallado")
+
     }),
     get:  url => API.get(url).then(function (data){
         return new Promise((resolve,reject)=>{
             if(data.data!==undefined){
+
                    resolve(data.data)
                    
             }else{
@@ -56,6 +57,8 @@ const request ={
             }
        })
     }).catch((e)=>{
+        alert("La operación ha fallado")
+
         console.log(e)
         console.log(url);
     })
@@ -75,7 +78,7 @@ const AnimalsApi ={
     },
     UpdateAnimal: (data) =>{
         console.log(data)
-
+        // alert("entra")
         const info = request.put('tblanimals/update/?id='+data.IDanimals, {"IDanimals":data.IDanimals,"animals":data.animals}).then(function(data){
             console.log(data);
             

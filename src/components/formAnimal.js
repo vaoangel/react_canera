@@ -4,10 +4,8 @@ import {connect} from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Form, Button, Table } from 'react-bootstrap'
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+
 
 const mapStateToProps= state =>({
     current: state.AnimalsReducer.currentAnimal,
@@ -55,6 +53,31 @@ class FitxaAnimal extends React.Component{
             showFormDiv:'false',
 
         },
+        formUpdate:{
+            idclasseanimal:"default",
+            idtamany:"default",
+            especie:'default',
+            idraça:"default",
+            capa: 'default',
+            color: 'default',
+            aptitut:"default",
+            sexe:"default",
+            cp:"default",
+            estatderecollida:'default',
+            dataeutanasia:null,
+            // imatge:"default",
+            llocRecollida:"default",
+            idmunicipi:"default",
+            idprovincia:"default",
+            dataIdent:null,
+            dataeixida:"default",
+            datanaixement:null,
+            nom:"default",
+            datarecollida: null,
+            idpropietari: "default",
+            domicili: "default",
+            showFormDiv:'false',
+        },
         update:false,
         currentData: undefined,
     }
@@ -77,11 +100,18 @@ class FitxaAnimal extends React.Component{
                 // console.log(this.state.update);
 
                 if(this.state.update == this.props.current.animals[index].id){
-                    console.log(this.props.current.animals[index]);
+                    // console.log(this.props.current.animals[index]);
                     
                     this.state.currentData = this.props.current.animals[index]
+                        for (const key in this.state.currentData) {
+                          
+                            this.state.formUpdate[key] = this.state.currentData[key]
+                        }
+
                 }
             }
+            console.log(this.state.formUpdate);
+            
             
         }
     }
@@ -134,10 +164,22 @@ class FitxaAnimal extends React.Component{
         
     }
     handleChanges(event){
-        this.setState({formData:{...this.state.formData, [event.target.name]: event.target.value }})
+            if(this.state.update != 'false'){
+                this.setState({formUpdate:{...this.state.formUpdate, [event.target.name]: event.target.value }})
+            }else{
+                this.setState({formData:{...this.state.formData, [event.target.name]: event.target.value }})
+            }
         }
     handleSubmit(){
-       var Datachanges =this.state.formData 
+        var Datachanges = '';
+        var currentDate = new Date()
+
+        if(this.state.update != 'false'){
+            Datachanges = this.state.formUpdate
+        }else{
+            Datachanges = this.state.formData
+
+        }
        var errors = false;
         // for (const key in Datachanges ) {
         
@@ -149,17 +191,55 @@ class FitxaAnimal extends React.Component{
         // }
 
         if(errors === false){
-            // var idProv = undefined;
-            // var idMuni = undefined;
+        
             var Cpmuni = undefined;
-            for(var i=0; i< this.state.municipis.length; i++){
-                if(this.state.formData.idmunicipi == this.state.municipis[i].idmunicipi){
-                    console.log(this.state.municipis[i]);
-                    Cpmuni = this.state.municipis[i].cp;
+            var dataeixida = undefined;
+            var dataeutanasia = undefined;
+            var dataIdent = undefined;
+            var datanaixement = undefined;
+            var datarecollida = undefined;
+            if(this.state.update != 'false'){
+                for(var i=0; i< this.state.municipis.length; i++){
+                    if(this.state.formUpdate.idmunicipi == this.state.municipis[i].idmunicipi){
+                        console.log(this.state.municipis[i]);
+                        Cpmuni = this.state.municipis[i].cp;
+                        
+                    }
+                }                
+                dataeixida = this.state.formUpdate.dataeixida;
+                dataeutanasia = this.state.formUpdate.dataeutanasia;
+                dataIdent = this.state.formUpdate.dataIdent;
+                datanaixement = this.state.formUpdate.datanaixement
+                datarecollida = this.state.formUpdate.datarecollida
+
+                if(dataeixida!= this.state.currentData.dataeixida){
+                    dataeixida =  Datachanges.dataeixida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                }else if(dataeutanasia!=this.state.currentData.dataeutanasia){
+                    console.log("entra");
                     
+                    dataeutanasia =  Datachanges.dataeutanasia+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                }else if(dataIdent!= this.state.currentData.dataIdent){
+                    dataIdent = Datachanges.dataIdent+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                }else if(datanaixement != this.state.currentData.datanaixement){
+                    datanaixement = Datachanges.datanaixement+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                }else if(datarecollida != this.state.currentData.datarecollida){
+                    datarecollida = Datachanges.datarecollida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
                 }
+            }else{
+                for(var i=0; i< this.state.municipis.length; i++){
+                    if(this.state.formData.idmunicipi == this.state.municipis[i].idmunicipi){
+                        console.log(this.state.municipis[i]);
+                        Cpmuni = this.state.municipis[i].cp;
+                        
+                    }
+                }
+                dataeixida =  Datachanges.dataeixida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                dataeutanasia =  Datachanges.dataeutanasia+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                dataIdent = Datachanges.dataIdent+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                datanaixement = Datachanges.datanaixement+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                datarecollida = Datachanges.datarecollida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
             }
-            var currentDate = new Date()
+       
 
             const animals ={
                 "IDanimals": this.state.update,
@@ -169,9 +249,9 @@ class FitxaAnimal extends React.Component{
                     "tranpenmusesq": false,
                     "tatuatgeesq": false,
                     "tatuatgedret": false,
-                    "dataidentificacio": Datachanges.dataIdent+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
-                    "datanaixement":  Datachanges.datanaixement+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
-                    "dataeixida": Datachanges.dataeixida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                    "dataidentificacio":dataIdent ,
+                    "datanaixement": datanaixement,
+                    "dataeixida":dataeixida,
                     "idraça": Datachanges.idraça,
                     "idclasseanimal":  Datachanges.idclasseanimal,
                     "especie": Datachanges.especie,
@@ -185,17 +265,18 @@ class FitxaAnimal extends React.Component{
                     "cp": Cpmuni,
                     "idmunicipi": Datachanges.idmunicipi,
                     "idprovincia": Datachanges.idprovincia,
-                    "dataeutanasia":  Datachanges.dataeutanasia+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                    "dataeutanasia":dataeutanasia ,
                     "estatderecollida": Datachanges.estatderecollida,
                     "idpropietari": Datachanges.idpropietari,
-                    "datarecollida": Datachanges.datarecollida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z",
+                    "datarecollida": datarecollida,
                 }
             }  
             if(this.state.update === 'false'){
-                    alert("entra")
+                 alert("entra")
                     this.state.success = "true"
                     this.props.insert(animals)
             }else{
+                alert("entra")
                 console.log(animals);
                 this.state.success = "true"
                 this.props.update(animals)
@@ -228,9 +309,10 @@ class FitxaAnimal extends React.Component{
         
         return html
     }
+    
     render(){  
-        console.log(this.state.formData);
-              
+        // console.log(this.state);
+   
         if(this.state.success == "true"){
             return<Redirect to='/'/>   
         }
@@ -332,7 +414,8 @@ class FitxaAnimal extends React.Component{
                 return<Redirect to='/'/>   
             }
             
-            if(this.state.formData.showFormDiv === 'false'){
+            if(this.state.formUpdate.showFormDiv === 'false'){
+                //LIST
                 return(
                     <div>
                         <Table striped bordered hover>
