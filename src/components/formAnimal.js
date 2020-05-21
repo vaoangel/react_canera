@@ -37,17 +37,18 @@ class FitxaAnimal extends React.Component{
             color: 'default',
             aptitut:"default",
             sexe:"default",
+            cp: null,
             estatderecollida:'default',
-            dataeutanasia:'default',
+            dataeutanasia:null,
             // imatge:"default",
-            llocRecollida:"default",
+            // llocRecollida:"default",
             idmunicipi:"default",
             idprovincia:"default",
-            dataIdent:"default",
+            dataIdent:null,
             dataeixida:"default",
-            datanaixement:"default",
+            datanaixement:null,
             nom:"default",
-            datarecollida: "default",
+            datarecollida: null,
             idpropietari: "default",
             domicili: "default",
             showFormDiv:'false',
@@ -62,11 +63,11 @@ class FitxaAnimal extends React.Component{
             color: 'default',
             aptitut:"default",
             sexe:"default",
-            cp:"default",
+            cp: null ,
             estatderecollida:'default',
             dataeutanasia:null,
             // imatge:"default",
-            llocRecollida:"default",
+            // llocRecollida:"default",
             idmunicipi:"default",
             idprovincia:"default",
             dataIdent:null,
@@ -180,15 +181,17 @@ class FitxaAnimal extends React.Component{
             Datachanges = this.state.formData
 
         }
-       var errors = false;
-        // for (const key in Datachanges ) {
+        console.log(Datachanges);
         
-        //     if(Datachanges[key] === 'default'){
-        //         alert("Ninguno de los campos puede estar vacio, porfavor revisa los datos introducidos")
-        //         errors= true; 
-        //         break
-        //     }       
-        // }
+       var errors = false;
+        for (const key in Datachanges ) {
+        
+            if(Datachanges[key] === 'default'){
+                alert("Ninguno de los campos puede estar vacio, porfavor revisa los datos introducidos")
+                errors= true; 
+                break
+            }       
+        }
 
         if(errors === false){
         
@@ -214,9 +217,7 @@ class FitxaAnimal extends React.Component{
 
                 if(dataeixida!= this.state.currentData.dataeixida){
                     dataeixida =  Datachanges.dataeixida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
-                }else if(dataeutanasia!=this.state.currentData.dataeutanasia){
-                    console.log("entra");
-                    
+                }else if(dataeutanasia!=this.state.currentData.dataeutanasia){                    
                     dataeutanasia =  Datachanges.dataeutanasia+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
                 }else if(dataIdent!= this.state.currentData.dataIdent){
                     dataIdent = Datachanges.dataIdent+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
@@ -233,11 +234,18 @@ class FitxaAnimal extends React.Component{
                         
                     }
                 }
-                dataeixida =  Datachanges.dataeixida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
-                dataeutanasia =  Datachanges.dataeutanasia+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
-                dataIdent = Datachanges.dataIdent+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
-                datanaixement = Datachanges.datanaixement+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
-                datarecollida = Datachanges.datarecollida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                if(dataeixida!= null){
+                    dataeixida =  Datachanges.dataeixida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                }else if(dataeutanasia!= null){                    
+                    dataeutanasia =  Datachanges.dataeutanasia+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                }else if(dataIdent!= null){
+                    dataIdent = Datachanges.dataIdent+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                }else if(datanaixement != null){
+                    datanaixement = Datachanges.datanaixement+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                }else if(datarecollida != null){
+                    datarecollida = Datachanges.datarecollida+"T"+currentDate.getHours()+":"+currentDate.getMinutes()+":"+currentDate.getSeconds()+"Z"
+                }
+         
             }
        
 
@@ -271,14 +279,17 @@ class FitxaAnimal extends React.Component{
                     "datarecollida": datarecollida,
                 }
             }  
+            console.log(animals);
+
             if(this.state.update === 'false'){
-                 alert("entra")
+                alert("Información Correcta, creando........")
                     this.state.success = "true"
                     this.props.insert(animals)
             }else{
-                alert("entra")
-                console.log(animals);
                 this.state.success = "true"
+
+                alert("Información Correcta, modificando........")
+                console.log(animals);
                 this.props.update(animals)
             }
         }
